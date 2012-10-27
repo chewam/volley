@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    div.container
+        br
+        select.pull-right(id="position", multiple="multiple")
+            option(value="bench") Banc
+            option(value="p1r") Passeur en 2 - reception
+            option(value="p1a") Passeur en 2 - attaque
+            option(value="p2r") Passeur en 1 - reception
+            option(value="p2a") Passeur en 1 - attaque
+            option(value="p3r") Passeur en 6 - reception
+            option(value="p3a") Passeur en 6 - attaque
+            option(value="p4r") Passeur en 5 - reception
+            option(value="p4a") Passeur en 5 - attaque
+            option(value="p5r") Passeur en 4 - reception
+            option(value="p5a") Passeur en 4 - attaque
+            option(value="p6r") Passeur en 3 - reception
+            option(value="p6a") Passeur en 3 - attaque
+
+        div.clearfix
+        div#field.field

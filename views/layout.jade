@@ -1,0 +1,120 @@
+doctype 5
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel="stylesheet", href="/stylesheets/bootstrap.min.css")
+        link(rel="stylesheet", href="/stylesheets/style.css")
+
+        script
+            var __POSITIONS__ = {
+                p1r: {
+                    1: {x: 700, y: 150, role: "defender", players: ['Flavie']},
+                    2: {x: 500, y: 200, role: "setter", players: ['Marion']},
+                    3: {x: 700, y: 400, role: "left", players: ['Diane'], firstMove: {x: 520, y: 430}},
+                    4: {x: 580, y: 430, role: "middle", players: ['Ariane'], firstMove: {x: 520, y: 250}},
+                    5: {x: 740, y: 280, role: "opposite", players: ['Hoevi'], firstMove: {x: 600, y: 140}},
+                    6: {x: 700, y: 270, role: "defender", players: ['Pauline'], libero: 'Chandra'}
+                },
+                p1a: {
+                    1: {x: 700, y: 200, role: "defender", players: ['Flavie']},
+                    2: {x: 500, y: 200, role: "setter", players: ['Marion']},
+                    3: {x: 520, y: 430, role: "left", players: ['Diane']},
+                    4: {x: 520, y: 250, role: "middle", players: ['Ariane']},
+                    5: {x: 600, y: 140, role: "opposite", players: ['Hoevi']},
+                    6: {x: 700, y: 350, role: "defender", players: ['Pauline'], libero: 'Chandra'}
+                },
+                p2r: {
+                    1: {x: 510, y: 100, role: "setter", players: ['Marion'], firstMove: {x: 500, y: 200}},
+                    2: {x: 470, y: 100, role: "left", players: ['Diane'], firstMove: {x: 570, y: 80}},
+                    3: {x: 550, y: 110, role: "middle", players: ['Ariane'], firstMove: {x: 510, y: 270}},
+                    4: {x: 700, y: 400, role: "opposite", players: ['Hoevi'], firstMove: {x: 520, y: 430}},
+                    5: {x: 700, y: 270, role: "defender", players: ['Pauline'], libero: 'Chandra'},
+                    6: {x: 700, y: 150, role: "defender", players: ['Flavie']}
+                },
+                p2a: {
+                    1: {x: 500, y: 200, role: "setter", players: ['Marion']},
+                    2: {x: 520, y: 110, role: "left", players: ['Diane']},
+                    3: {x: 520, y: 270, role: "middle", players: ['Ariane']},
+                    4: {x: 520, y: 430, role: "opposite", players: ['Hoevi']},
+                    5: {x: 700, y: 350, role: "defender", players: ['Pauline'], libero: 'Chandra'},
+                    6: {x: 700, y: 200, role: "defender", players: ['Flavie']}
+                },
+                p3r: {
+                    1: {x: 700, y: 150, role: "defender", players: ['Diane']},
+                    2: {x: 550, y: 110, role: "middle", players: ['Ariane'], firstMove: {x: 540, y: 270}},
+                    3: {x: 470, y: 200, role: "opposite", players: ['Hoevi'], firstMove: {x: 550, y: 90}},
+                    4: {x: 700, y: 400, role: "left", players: ['Pauline'], firstMove: {x: 520, y: 430}},
+                    5: {x: 700, y: 270, role: "defender", players: ['Flavie'], libero: 'Chandra'},
+                    6: {x: 500, y: 220, role: "setter", players: ['Marion']}
+                },
+                p3a: {
+                    1: {x: 700, y: 200, role: "defender", players: ['Diane']},
+                    2: {x: 520, y: 270, role: "middle", players: ['Ariane']},
+                    3: {x: 520, y: 110, role: "opposite", players: ['Hoevi']},
+                    4: {x: 520, y: 430, role: "left", players: ['Pauline']},
+                    5: {x: 700, y: 350, role: "defender", players: ['Flavie'], libero: 'Chandra'},
+                    6: {x: 500, y: 220, role: "setter", players: ['Marion']}
+                },
+                p4r: {
+                    1: {x: 700, y: 270, role: "defender", players: ['Ariane'], libero: 'Chandra'},
+                    2: {x: 700, y: 150, role: "opposite", players: ['Hoevi'], firstMove: {x: 500, y: 150}},
+                    3: {x: 580, y: 430, role: "left", players: ['Pauline']},
+                    4: {x: 500, y: 420, role: "middle", players: ['Flavie'], firstMove: {x: 590, y: 270}},
+                    5: {x: 530, y: 400, role: "setter", players: ['Marion'], firstMove: {x: 500, y: 250}},
+                    6: {x: 700, y: 400, role: "defender", players: ['Diane']}
+                },
+                p4a: {
+                    1: {x: 700, y: 200, role: "defender", players: ['Ariane'], libero: 'Chandra'},
+                    2: {x: 520, y: 110, role: "opposite", players: ['Hoevi']},
+                    3: {x: 520, y: 430, role: "left", players: ['Pauline']},
+                    4: {x: 520, y: 270, role: "middle", players: ['Flavie']},
+                    5: {x: 500, y: 220, role: "setter", players: ['Marion']},
+                    6: {x: 700, y: 350, role: "defender", players: ['Diane']}
+                },
+                p5r: {
+                    1: {x: 700, y: 150, role: "opposite", players: ['Hoevi'], firstMove: {x: 650, y: 120}},
+                    2: {x: 590, y: 110, role: "left", players: ['Pauline']},
+                    3: {x: 530, y: 400, role: "middle", players: ['Flavie'], firstMove: {x: 590, y: 270}},
+                    4: {x: 500, y: 420, role: "setter", players: ['Marion'], firstMove: {x: 500, y: 250}},
+                    5: {x: 700, y: 400, role: "defender", players: ['Diane']},
+                    6: {x: 700, y: 270, role: "defender", players: ['Ariane'], libero: 'Chandra'}
+                },
+                p5a: {
+                    1: {x: 600, y: 120, role: "opposite", players: ['Hoevi']},
+                    2: {x: 520, y: 180, role: "left", players: ['Pauline']},
+                    3: {x: 520, y: 270, role: "middle", players: ['Flavie']},
+                    4: {x: 500, y: 230, role: "setter", players: ['Marion']},
+                    5: {x: 700, y: 350, role: "defender", players: ['Diane']},
+                    6: {x: 700, y: 200, role: "defender", players: ['Ariane'], libero: 'Chandra'}
+                },
+                p6r: {
+                    1: {x: 700, y: 150, role: "defender", players: ['Pauline']},
+                    2: {x: 590, y: 110, role: "middle", players: ['Flavie'], firstMove: {x: 590, y: 270}},
+                    3: {x: 480, y: 270, role: "setter", players: ['Marion']},
+                    4: {x: 590, y: 440, role: "left", players: ['Diane']},
+                    5: {x: 700, y: 400, role: "defender", players: ['Ariane'], libero: 'Chandra'},
+                    6: {x: 700, y: 270, role: "opposite", players: ['Hoevi'], firstMove: {x: 650, y: 150}}
+                },
+                p6a: {
+                    1: {x: 700, y: 200, role: "defender", players: ['Pauline']},
+                    2: {x: 520, y: 270, role: "middle", players: ['Flavie']},
+                    3: {x: 500, y: 230, role: "setter", players: ['Marion']},
+                    4: {x: 520, y: 440, role: "left", players: ['Diane']},
+                    5: {x: 700, y: 350, role: "defender", players: ['Ariane'], libero: 'Chandra'},
+                    6: {x: 600, y: 110, role: "opposite", players: ['Hoevi']}
+                }
+            };
+
+        script(src="/javascripts/jquery.min.js")
+        script(type="text/javascript", src="/javascripts/kinetic.js")
+
+        script(type="text/javascript", src="/javascripts/positions.js")
+        script(type="text/javascript", src="/javascripts/field.js")
+        script(type="text/javascript", src="/javascripts/player.js")
+        script(type="text/javascript", src="/javascripts/team.js")
+
+        script(type="text/javascript", src="/javascripts/index.js")
+
+    body
+        block content
