@@ -1,10 +1,65 @@
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+
+        <script>
+            var __POSITIONS__ = {
+                1: {
+                    1: {x: 700, y: 150},
+                    2: {x: 500, y: 200},
+                    3: {x: 620, y: 420},
+                    4: {x: 580, y: 430},
+                    5: {x: 700, y: 400},
+                    6: {x: 700, y: 270}
+                },
+                2: {
+                    1: {x: 510, y: 100},
+                    2: {x: 470, y: 100},
+                    3: {x: 550, y: 110},
+                    4: {x: 700, y: 400},
+                    5: {x: 700, y: 270},
+                    6: {x: 700, y: 150}
+                },
+                3: {
+                    1: {x: 700, y: 150},
+                    2: {x: 550, y: 110},
+                    3: {x: 470, y: 200},
+                    4: {x: 700, y: 400},
+                    5: {x: 700, y: 270},
+                    6: {x: 500, y: 220}
+                },
+                4: {
+                    1: {x: 700, y: 270},
+                    2: {x: 700, y: 150},
+                    3: {x: 580, y: 430},
+                    4: {x: 500, y: 420},
+                    5: {x: 530, y: 400},
+                    6: {x: 700, y: 400}
+                },
+                5: {
+                    1: {x: 700, y: 150},
+                    2: {x: 590, y: 110},
+                    3: {x: 530, y: 400},
+                    4: {x: 500, y: 420},
+                    5: {x: 700, y: 400},
+                    6: {x: 700, y: 270}
+                },
+                6: {
+                    1: {x: 700, y: 150},
+                    2: {x: 590, y: 110},
+                    3: {x: 480, y: 270},
+                    4: {x: 590, y: 440},
+                    5: {x: 700, y: 400},
+                    6: {x: 700, y: 270}
+                }
+            };
+        </script>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/kinetic.js"></script>
 
+        <script type="text/javascript" src="js/positions.js"></script>
         <script type="text/javascript" src="js/field.js"></script>
         <script type="text/javascript" src="js/player.js"></script>
         <script type="text/javascript" src="js/team.js"></script>
@@ -12,6 +67,18 @@
         <script type="text/javascript" src="js/index.js"></script>
     </head>
     <body>
-        <div id="container"></div>
+        <div class="container">
+            <br />
+            <select id="position" multiple="multiple" class="pull-right">
+                <option value="1">Passeur en 2</option>
+                <option value="2">Passeur en 1</option>
+                <option value="3">Passeur en 6</option>
+                <option value="4">Passeur en 5</option>
+                <option value="5">Passeur en 4</option>
+                <option value="6">Passeur en 3</option>
+            </select>
+            <div class="clearfix"></div>
+            <div class="field" id="field"></div>
+        </div>
     </body>
 </html>
