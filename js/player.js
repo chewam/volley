@@ -1,10 +1,5 @@
 var Player = function(config) {
-    config = config || {};
-
-    for (var key in config) {
-        console.log('apply', key, config[key]);
-        this[key] = config[key];
-    }
+    $.extend(this, config || {});
 };
 
 Player.prototype.getShape = function() {
@@ -15,29 +10,29 @@ Player.prototype.getShape = function() {
 
     var line = new Kinetic.Line({
         points: [
-            45, 45,
-            20, 20,
-            -5, 45
+            this.x + 25 + 25, this.y + 25 + 25,
+            this.x + 25, this.y + 25,
+            this.x - 25 + 25, this.y + 25 + 25
         ],
         stroke: this.stroke,
         strokeWidth: this.strokeWidth
     });
 
     var circle = new Kinetic.Circle({
-        x: 20,
-        y: 20,
+        x: this.x + 25,
+        y: this.y + 25,
         radius: 20,
-        fill: 'red',
+        fill: this.fill,
         stroke: this.stroke,
         strokeWidth: this.strokeWidth
     });
 
     var text = new Kinetic.Text({
-        x: 12,
-        y: 10,
-        text: "6",
+        x: this.x - 7 + 25,
+        y: this.y - 10 + 25,
+        text: this.number,
         fontSize: 20,
-        textFill: "black"
+        textFill: this.textFill
     });
 
     group.add(line);
