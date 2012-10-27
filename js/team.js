@@ -57,6 +57,21 @@ Team.prototype.getShape = function() {
         };
     }
 
+    this.libero = new Player({
+        x: 0,
+        y: 0,
+        radius: 0.4,
+        fill: 'white',
+        strokeWidth: 4,
+        stroke: 'black',
+        textFill: 'black',
+        number: "L",
+        visible: false,
+        zoom: this.zoom
+    });
+
+    group.add(this.libero.getShape());
+
     return group;
 };
 
@@ -64,7 +79,32 @@ Team.prototype.loadPosition = function(position) {
     position = this.positions.get(position);
     console.log('position', position);
 
+    this.showLibero(false);
+
     for (var key in position) {
-        this.players[key].setPosition(position[key]);
+        this.players[key].setPosition(position[key], this.positions.get('bench')[key]);
+        if (position[key].libero) {
+            this.showLibero(position[key]);
+        }
+    }
+};
+
+Team.prototype.showLibero = function(position) {
+    if (position.libero) {
+        _libero = this.libero;
+        console.warn(position);
+        // this.libero.group.moveTo(position)
+        // this.libero.group.setX(position.x);
+        // this.libero.group.setY(position.y);
+        // this.libero.group.getLayer().draw();
+        this.libero.setPosition({
+            x: position.x,
+            y: position.y,
+            role: 'libero',
+            players: [position.libero]
+        }, null);
+        this.libero.group.show();
+    } else {
+        this.libero.group.hide();
     }
 };

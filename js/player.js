@@ -9,7 +9,8 @@ var Player = function(config) {
 Player.prototype.getShape = function() {
 
     this.group = new Kinetic.Group({
-        draggable: true
+        draggable: true,
+        visible: this.visible
     });
 
     // var line = new Kinetic.Line({
@@ -38,7 +39,7 @@ Player.prototype.getShape = function() {
         strokeWidth: this.strokeWidth
     });
 
-    var number = new Kinetic.Text({
+    this.number = new Kinetic.Text({
         x: this.x - 7 + this.radius,
         y: this.y - 10 + this.radius,
         text: this.number,
@@ -57,7 +58,7 @@ Player.prototype.getShape = function() {
     // this.group.add(line);
     this.group.add(this.circle);
     this.group.add(this.role);
-    this.group.add(number);
+    this.group.add(this.number);
 
     this.group.on("mouseover", function() {
         document.body.style.cursor = "pointer";
@@ -74,11 +75,11 @@ Player.prototype.getShape = function() {
     return this.group;
 };
 
-Player.prototype.setPosition = function(position) {
+Player.prototype.setPosition = function(position, bench) {
 
     this.group.transitionTo({
-        x: position.x,
-        y: position.y,
+        x: position.libero ? bench.x : position.x,
+        y: position.libero ? bench.y : position.y,
         easing: 'linear',
         duration: 1
     });
@@ -98,9 +99,11 @@ Player.prototype.setPosition = function(position) {
 
     if (position.role === 'setter') {
         this.circle.setFill('black');
+    // } else if (position.libero) {
+    //     this.circle.setFill('darkred');
     } else {
         this.circle.setFill(this.fill);
     }
 
-    this.role.setText((position.role || '') + (position.players ? ' - ' + position.players.join(', ') : ''));
+    this.role.setText((position.role || '') + (position.players ? ' - ' + (/*position.libero || */position.players.join(', ')) : ''));
 };
