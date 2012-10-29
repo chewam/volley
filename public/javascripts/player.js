@@ -107,5 +107,17 @@ Player.prototype.setPosition = function(position, bench) {
         this.circle.setFill(this.fill);
     }
 
-    this.role.setText((Roles[position.role] || '') + (position.players ? ' - ' + (/*position.libero || */position.players.join(', ')) : ''));
+    var players, role = Roles[position.role] || '';
+    if (position.players && position.players.length) {
+        players = position.players.join(', ');
+        if (players.length) {
+            role += ' - ' + players;
+        }
+    }
+
+    console.warn('role', role, position.players);
+
+    this.role.setText(role);
+
+    this.position = position;
 };

@@ -98,9 +98,10 @@ $(function() {
 
     $('#positions').change(function() {
         var option = $('option:selected', $(this));
-
+        console.warn('change');
         teamB.loadPosition(option.val());
         showPositionDetails(teamB.positions.get(option.val()));
+        $('#current-position .form-actions a').toggleClass('disabled', option.val() === 'bench');
     });
 
     /**********/
@@ -109,7 +110,7 @@ $(function() {
 
     /**********/
 
-    for (key in Roles) {
+    for (var key in Roles) {
         $('select.roles').append('<option value="'+key+'">'+Roles[key]+'</option>');
     }
 
@@ -118,9 +119,8 @@ $(function() {
     $('#save').click(function() {
         var name, number,
             values = $('#current-position').serializeArray(),
-            positionName = $('#positions option:selected').val();
-
-        position = teamB.positions.get(positionName);
+            positionName = $('#positions option:selected').val(),
+            position = teamB.positions.get(positionName);
 
         for (var i = 0, l = values.length; i < l; i++) {
             name = values[i].name;
@@ -143,6 +143,21 @@ $(function() {
 
     /**********/
 
+    $('#delete').click(function() {
+        var option = $('#positions option:selected'),
+            positionName = option.val(),
+            prevPositionName = option.prev().val(),
+            position = teamB.positions.get(positionName);
+
+        teamB.positions.remove(positionName);
+        savePositions(teamB.positions.items);
+        fillPositionsList(teamB.positions.items, prevPositionName);
+        teamB.loadPosition(prevPositionName);
+        showPositionDetails(teamB.positions.get(prevPositionName));
+    });
+
+    /**********/
+
     $('#create').click(function() {
         var fullName,
             positionName = $('#positions option:selected').val(),
@@ -150,18 +165,14 @@ $(function() {
 
         positionName += '_' + (+new Date());
         fullName = 'Copy of ' + position.name;
-        position = $.extend({}, position);
+        position = $.extend(true, {}, position);
         position.name = fullName;
         teamB.positions.set(positionName, position);
         savePositions(teamB.positions.items);
-
-        console.log('create', positionName, fullName, $('#options'));
         fillPositionsList(teamB.positions.items, positionName);
         teamB.loadPosition(positionName);
-        showPositionDetails(positionName);
-        // $('#options').append('<option value="'+positionName+'" selected="selected">'+fullName+'</option>');
-        // $('#options').val(positionName);
-        // teamB.loadPosition(positionName);
+        showPositionDetails(position);
+        $('#current-position .form-actions a').toggleClass('disabled', false);
     });
 
 });
@@ -169,13 +180,21 @@ $(function() {
 var fillPositionsList = function(positions, selected) {
     var name, options = [];
     for (var key in positions) {
+        if (key === 'bench') continue;
         name = positions[key].name;
-        if (selected === key || (key === 'bench' && !selected)) {
-            options.unshift('<option value="'+key+'" selected="selected">'+name+'</option>');
+        if (selected === key) {
+            options.push('<option value="'+key+'" selected="selected">'+name+'</option>');
         } else {
             options.push('<option value="'+key+'">'+name+'</option>');
         }
     }
+
+    if (selected) {
+        options.unshift('<option value="bench">Bench</option>');
+    } else {
+        options.unshift('<option value="bench" selected="selected">Bench</option>');
+    }
+
     $('#positions').empty();
     $('#positions').append(options);
 };

@@ -55,9 +55,9 @@ Team.prototype.getShape = function() {
         this.positions.get('bench').positions[i + 1] = {
             x: this.bench.x / this.zoom + i * this.playerConfig.radius * 2 + (0.2) * i + this.bench.padding / this.zoom - this.field.margin / this.zoom,
             y: (this.bench.y - this.field.margin + this.bench.padding) / this.zoom
-            // x: this.bench.x + i * this.playerConfig.radius * this.zoom * 2 + (0.2 * this.zoom) * i + this.bench.padding,
-            // y: this.bench.y + this.bench.padding
         };
+
+        player.group.on('dragend', this.playerDragEndHandler(player));
     }
 
     this.libero = new Player({
@@ -104,4 +104,12 @@ Team.prototype.showLibero = function(position) {
     } else {
         this.libero.group.hide();
     }
+};
+
+Team.prototype.playerDragEndHandler = function(player) {
+    return (function (event) {
+        console.log('dragend', player.position, event.layerX, event.layerY, this.zoom, this.playerConfig.radius);
+        player.position.x = (event.layerX - this.field.margin) / this.zoom - this.playerConfig.radius;
+        player.position.y = (event.layerY - this.field.margin) / this.zoom - this.playerConfig.radius;
+    }).bind(this);
 };
