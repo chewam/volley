@@ -2,21 +2,30 @@ extends layout
 
 block content
     div.container
-        br
-        select.pull-right(id="position", multiple="multiple")
-            option(value="bench") Banc
-            option(value="p1r") Passeur en 2 - reception
-            option(value="p1a") Passeur en 2 - attaque
-            option(value="p2r") Passeur en 1 - reception
-            option(value="p2a") Passeur en 1 - attaque
-            option(value="p3r") Passeur en 6 - reception
-            option(value="p3a") Passeur en 6 - attaque
-            option(value="p4r") Passeur en 5 - reception
-            option(value="p4a") Passeur en 5 - attaque
-            option(value="p5r") Passeur en 4 - reception
-            option(value="p5a") Passeur en 4 - attaque
-            option(value="p6r") Passeur en 3 - reception
-            option(value="p6a") Passeur en 3 - attaque
-
-        div.clearfix
         div#field.field
+        div.row
+            div.span3
+                h3.page-header Positions
+                select#positions(multiple="multiple", size=15)
+                button#create.btn.btn-success.btn-large Create position
+            div.span5
+                h3.page-header Current position
+                form#current-position.form-horizontal
+                    div.control-group
+                        label.control-label Name:
+                        div.controls
+                            input#position-name(name="position-name", type="text", placeholder="position name...")
+                    //- br
+                    - for (var i = 0; i < 6; i++) {
+                        div.control-group
+                            label.control-label #{i + 1}:
+                            div.controls
+                                input.input-small(id="player-at-#{i + 1}", name="player-at-#{i + 1}", type="text", placeholder="player name...")
+                                select.roles.input-medium(id="role-at-#{i + 1}", name="role-at-#{i + 1}")
+                    - }
+                    div.form-actions
+                        button#save.btn.btn-primary(type="button") Save
+                        | &nbsp;
+                        button#delete.btn.btn-danger(type="button") Delete
+            div.span4
+                h3.page-header Lorem ipsum

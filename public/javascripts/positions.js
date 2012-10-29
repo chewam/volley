@@ -1,6 +1,6 @@
-var Positions = function() {
+var Positions = function(items) {
 
-    this.items = $.extend({}, __POSITIONS__ || {});
+    this.items = $.extend({}, items || __POSITIONS__ || {});
 
 };
 

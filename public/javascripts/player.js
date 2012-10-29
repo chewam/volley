@@ -77,33 +77,35 @@ Player.prototype.getShape = function() {
 
 Player.prototype.setPosition = function(position, bench) {
 
+    console.log('setPosition', this, this.field);
+
+    this.firstMove.hide();
+
     this.group.transitionTo({
-        x: position.libero ? bench.x : position.x,
-        y: position.libero ? bench.y : position.y,
+        x: (position.libero ? bench.x : position.x) * this.zoom + this.field.margin,
+        y: (position.libero ? bench.y : position.y) * this.zoom + this.field.margin,
         easing: 'linear',
-        duration: 1
+        duration: 1,
+        callback: (function() {
+            if (position.firstMove) {
+                this.firstMove.setPoints([
+                    this.radius, this.radius,
+                    (position.firstMove.x - position.x) * this.zoom,
+                    (position.firstMove.y - position.y) * this.zoom
+                ]);
+                this.firstMove.show();
+            }
+        }).bind(this)
     });
 
     this.x = position.x;
     this.y = position.y;
 
-    if (position.firstMove) {
-        this.firstMove.setPoints([
-            this.radius, this.radius,
-            position.firstMove.x - position.x, position.firstMove.y - position.y
-        ]);
-        this.firstMove.show();
-    } else {
-        this.firstMove.hide();
-    }
-
     if (position.role === 'setter') {
         this.circle.setFill('black');
-    // } else if (position.libero) {
-    //     this.circle.setFill('darkred');
     } else {
         this.circle.setFill(this.fill);
     }
 
-    this.role.setText((position.role || '') + (position.players ? ' - ' + (/*position.libero || */position.players.join(', ')) : ''));
+    this.role.setText((Roles[position.role] || '') + (position.players ? ' - ' + (/*position.libero || */position.players.join(', ')) : ''));
 };

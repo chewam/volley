@@ -4,7 +4,7 @@ var Team = function(config) {
 
     this.players = {};
 
-    this.positions = new Positions();
+    this.positions = new Positions(this.positions);
 
     this.bench.x *= this.zoom;
     this.bench.y *= this.zoom;
@@ -14,7 +14,6 @@ var Team = function(config) {
     this.bench.padding *= this.zoom;
     this.field.width *= this.zoom;
     this.field.margin *= this.zoom;
-    // this.playerConfig.radius *= this.zoom;
 };
 
 Team.prototype.getShape = function() {
@@ -35,25 +34,29 @@ Team.prototype.getShape = function() {
 
     group.add(bench);
 
-    this.positions.set('bench', {});
+    this.positions.set('bench', {
+        name: 'Bench',
+        positions: {}
+    });
 
     for (var player, i = 0; i < this.limit; i++) {
         player = new Player($.extend({
-            // x: this.bench.x / this.zoom + i * this.playerConfig.radius * 2 + 0.2 * i + this.bench.padding,
-            // y: this.bench.y / this.zoom + this.bench.padding,
             x: 0,
             y: 0,
             number: i + 1,
-            zoom: this.zoom
+            zoom: this.zoom,
+            field: this.field
         }, this.playerConfig));
 
         group.add(player.getShape());
 
         this.players[i + 1] = player;
 
-        this.positions.get('bench')[i + 1] = {
-            x: this.bench.x + i * this.playerConfig.radius * this.zoom * 2 + (0.2 * this.zoom) * i + this.bench.padding,
-            y: this.bench.y + this.bench.padding
+        this.positions.get('bench').positions[i + 1] = {
+            x: this.bench.x / this.zoom + i * this.playerConfig.radius * 2 + (0.2) * i + this.bench.padding / this.zoom - this.field.margin / this.zoom,
+            y: (this.bench.y - this.field.margin + this.bench.padding) / this.zoom
+            // x: this.bench.x + i * this.playerConfig.radius * this.zoom * 2 + (0.2 * this.zoom) * i + this.bench.padding,
+            // y: this.bench.y + this.bench.padding
         };
     }
 
@@ -67,7 +70,8 @@ Team.prototype.getShape = function() {
         textFill: 'black',
         number: "L",
         visible: false,
-        zoom: this.zoom
+        zoom: this.zoom,
+        field: this.field
     });
 
     group.add(this.libero.getShape());
@@ -77,26 +81,19 @@ Team.prototype.getShape = function() {
 
 Team.prototype.loadPosition = function(position) {
     position = this.positions.get(position);
-    console.log('position', position);
 
     this.showLibero(false);
 
-    for (var key in position) {
-        this.players[key].setPosition(position[key], this.positions.get('bench')[key]);
-        if (position[key].libero) {
-            this.showLibero(position[key]);
+    for (var key in position.positions) {
+        this.players[key].setPosition(position.positions[key], this.positions.get('bench').positions[key]);
+        if (position.positions[key].libero) {
+            this.showLibero(position.positions[key]);
         }
     }
 };
 
 Team.prototype.showLibero = function(position) {
     if (position.libero) {
-        _libero = this.libero;
-        console.warn(position);
-        // this.libero.group.moveTo(position)
-        // this.libero.group.setX(position.x);
-        // this.libero.group.setY(position.y);
-        // this.libero.group.getLayer().draw();
         this.libero.setPosition({
             x: position.x,
             y: position.y,

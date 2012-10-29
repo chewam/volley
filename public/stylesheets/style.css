@@ -1,4 +1,42 @@
+.header {
+    background-color: #F5F5F5;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+h1 a {
+    color: #ddd;
+    text-shadow: 0 2px 3px #fff;
+}
+
+h1 a:hover {
+    color: #ddd;
+    text-decoration: none;
+}
+
 .field {
-    border: 1px solid #AAA;
+    border: 1px solid #297cc4;
     background-color: #5CA1DD;
+}
+
+/* Bootstrap override */
+
+.form-horizontal .control-group {
+    margin-bottom: 10px;
+}
+
+.form-horizontal .control-label {
+    width: 50px;
+}
+
+.form-horizontal .controls {
+    margin-left: 60px;
+}
+
+.form-horizontal .form-actions {
+    padding-left: 60px;
+}
+
+.form-horizontal .controls select {
+    margin-left: 10px;
 }
