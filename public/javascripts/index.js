@@ -98,11 +98,20 @@ $(function() {
 
     $('#positions').change(function() {
         var option = $('option:selected', $(this));
-        console.warn('change');
+
         teamB.loadPosition(option.val());
         showPositionDetails(teamB.positions.get(option.val()));
-        $('#current-position .form-actions a').toggleClass('disabled', option.val() === 'bench');
+        // $('#current-position form .form-actions a').toggleClass('disabled', option.val() === 'bench');
+        if (option.val() !== 'bench') {
+            $('#current-position').show();
+        } else {
+            $('#current-position').hide();
+        }
     });
+
+    /**********/
+
+    $('#current-position form :checkbox').change(onCheckboxChange);
 
     /**********/
 
@@ -116,9 +125,18 @@ $(function() {
 
     /**********/
 
+    $('#export').click(function() {
+        var positions = JSON.stringify(teamB.positions.items);
+
+        $('#export-modal').modal('show');
+        $('#export-modal pre.content').text(positions);
+    });
+
+    /**********/
+
     $('#save').click(function() {
         var name, number,
-            values = $('#current-position').serializeArray(),
+            values = $('#current-position form').serializeArray(),
             positionName = $('#positions option:selected').val(),
             position = teamB.positions.get(positionName);
 
@@ -136,8 +154,6 @@ $(function() {
         }
 
         teamB.loadPosition(positionName);
-
-        console.log('POSITIONS', teamB.positions.items);
         savePositions(teamB.positions.items);
     });
 
@@ -172,10 +188,26 @@ $(function() {
         fillPositionsList(teamB.positions.items, positionName);
         teamB.loadPosition(positionName);
         showPositionDetails(position);
-        $('#current-position .form-actions a').toggleClass('disabled', false);
+        $('#current-position form .form-actions a').toggleClass('disabled', false);
     });
 
 });
+
+var onCheckboxChange = function() {
+    console.log('change', this, arguments);
+    var checkbox = $(this);
+    if (checkbox.is(':checked')) {
+        $('#current-position form :checkbox').each(function(index, item) {
+            $(item).attr('checked', false);
+            $(item).parent().next().hide();
+        });
+        checkbox.parent().next().show();
+        checkbox.attr('checked', true);
+    } else {
+        checkbox.parent().next().hide();
+    }
+    
+};
 
 var fillPositionsList = function(positions, selected) {
     var name, options = [];
@@ -208,7 +240,7 @@ var savePositions = function(positions) {
 };
 
 var showPositionDetails = function(position) {
-    var player;
+    var player, checkbox;
 
     $('#position-name').val(position.name);
 
@@ -221,6 +253,14 @@ var showPositionDetails = function(position) {
 
         if (position.positions[key].role) {
             $('#role-at-' + key).val(position.positions[key].role);
+        }
+
+        if (position.positions[key].libero) {
+            // console.log('LIBERO', key, position.positions[key].libero);
+            checkbox = $($('#current-position form :checkbox')[key-1]);
+            checkbox.attr('checked', true);
+            checkbox.parent().next().val(position.positions[key].libero);
+            onCheckboxChange.call($('#current-position form :checkbox')[key-1]);
         }
     }
 };

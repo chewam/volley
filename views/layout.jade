@@ -143,6 +143,7 @@ html
             };
 
         script(src="/javascripts/jquery.min.js")
+        script(src="/javascripts/bootstrap-modal.js")
         script(type="text/javascript", src="/javascripts/kinetic.js")
 
         script(type="text/javascript", src="/javascripts/roles.js")
@@ -171,3 +172,14 @@ html
                     a(href="http://volley.chewam.com/")= title
 
         block content
+
+        div#export-modal.modal.fade.hide
+            div.modal-header
+                button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+                h3 Positions export
+            div.modal-body
+                pre.content
+            div.modal-footer
+                //- a.btn(href="#") Close
+                //- a.btn.btn-primary(href="#") Save changes
+

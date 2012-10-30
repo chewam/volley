@@ -6,26 +6,35 @@ block content
         div.row
             div.span3
                 h3.page-header Positions
-                select#positions(multiple="multiple", size=15)
-                button#create.btn.btn-success.btn-large Create position
-            div.span5
+                select#positions(multiple="multiple", size=16)
+                button#create.btn.btn-success.btn-large Create a new position
+                br
+                button#export.btn.btn-large Export all positions
+                //- button#export.btn.btn-large(data-target="#export-modal", data-toggle="modal") Export all positions
+            div#current-position.span9(style="display:none")
                 h3.page-header Current position
-                form#current-position.form-horizontal
+                form.form-horizontal
                     div.control-group
                         label.control-label Name:
                         div.controls
                             input#position-name(name="position-name", type="text", placeholder="position name...")
-                    //- br
-                    - for (var i = 0; i < 6; i++) {
+
+                    - for (var pos, i = 0; i < 6; i++) {
+                        - pos = i + 1
                         div.control-group
-                            label.control-label #{i + 1}:
+                            label.control-label #{pos}:
                             div.controls
-                                input.input-small(id="player-at-#{i + 1}", name="player-at-#{i + 1}", type="text", placeholder="player name...")
-                                select.roles.input-medium(id="role-at-#{i + 1}", name="role-at-#{i + 1}")
+                                input.input-small(id="player-at-#{pos}", name="player-at-#{pos}", type="text", placeholder="player name...")
+                                select.roles.input-medium(id="role-at-#{pos}", name="role-at-#{pos}")
+                                label.checkbox
+                                    input(type="checkbox")
+                                    | Libero
+                                input.input-small(id="libero-at-#{pos}", name="libero-at-#{pos}", type="text", placeholder="libero name...", style="display:none")
                     - }
+
                     div.form-actions
-                        a#save.btn.btn-primary.disabled Save
+                        a#save.btn.btn-primary Save
                         | &nbsp;
-                        a#delete.btn.btn-danger.disabled Delete
-            div.span4
-                h3.page-header Lorem ipsum
+                        a#delete.btn.btn-danger Delete
+            //- div.span4
+            //-     h3.page-header Lorem ipsum

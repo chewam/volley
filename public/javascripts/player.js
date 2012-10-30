@@ -76,9 +76,6 @@ Player.prototype.getShape = function() {
 };
 
 Player.prototype.setPosition = function(position, bench) {
-
-    console.log('setPosition', this, this.field);
-
     this.firstMove.hide();
 
     this.group.transitionTo({
@@ -114,8 +111,6 @@ Player.prototype.setPosition = function(position, bench) {
             role += ' - ' + players;
         }
     }
-
-    console.warn('role', role, position.players);
 
     this.role.setText(role);
 

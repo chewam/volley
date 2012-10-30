@@ -108,7 +108,6 @@ Team.prototype.showLibero = function(position) {
 
 Team.prototype.playerDragEndHandler = function(player) {
     return (function (event) {
-        console.log('dragend', player.position, event.layerX, event.layerY, this.zoom, this.playerConfig.radius);
         player.position.x = (event.layerX - this.field.margin) / this.zoom - this.playerConfig.radius;
         player.position.y = (event.layerY - this.field.margin) / this.zoom - this.playerConfig.radius;
     }).bind(this);

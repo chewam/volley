@@ -19,6 +19,15 @@ h1 a:hover {
     background-color: #5CA1DD;
 }
 
+button#create {
+    width: 220px;
+}
+
+button#export {
+    width: 220px;
+    margin-top: 5px;
+}
+
 /* Bootstrap override */
 
 .form-horizontal .control-group {
@@ -38,5 +47,18 @@ h1 a:hover {
 }
 
 .form-horizontal .controls select {
-    margin-left: 10px;
+    margin: 0 10px;
+}
+
+.form-horizontal .controls label {
+    margin-right: 10px;
+}
+
+.page-header {
+    padding-bottom: 0;
+    margin: 10px 0;
+}
+
+.form-horizontal label {
+    display: inline-block;
 }
