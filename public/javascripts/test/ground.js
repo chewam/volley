@@ -71,7 +71,9 @@ Ground.prototype.drawTeam = function() {
 };
 
 Ground.prototype.setPhase = function(phase) {
-    this.team.setPositions(phase.positions);
+    if (phase) {
+        this.team.setPositions(phase.positions);
+    }
 };
 
 Ground.prototype.initDrawing = function() {

@@ -12,7 +12,7 @@ block content
                 h3.page-header Phases
 
                 ul.list
-                    li(ng:repeat="phase in phases")
+                    li(ng:repeat="phase in phases.items")
                         a(href="#/phases/{{phase.id}}") {{phase.name}}
 
                 div.input-append
@@ -23,4 +23,4 @@ block content
                 div.detail-container
                     div.detail(ng:view)
                         h3.page-header No phase selected...
-                div#ground(ng:controller="GroundCtrl")
+                div#ground(ng:show="phase", ng:controller="GroundCtrl")

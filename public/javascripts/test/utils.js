@@ -49,6 +49,7 @@ var Message = {
 };
 
 var Phases = {
+    selected: null,
     items: JSON.parse(window.localStorage.getItem('phases')) || [],
     defaults: {
         name: '',

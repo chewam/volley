@@ -2,8 +2,8 @@ angular.module('test', []).
     config(['$routeProvider', function($routeProvider) {
         $routeProvider.
             when('/phases', {
-                templateUrl: '/templates/empty.html'
-                // controller: PhaseDetailCtrl
+                templateUrl: '/templates/empty.html',
+                controller: MainCtrl
             }).
             when('/phases/:id', {
                 templateUrl: '/templates/phase-detail.html',
@@ -43,4 +43,17 @@ angular.module('test', []).
                 eve.on(eventName, callback);
             }
         };
-    }]);
+    }]).
+    service('phaseService', function($rootScope) {
+        var p;
+
+        return {
+            set: function(phase) {
+                p = phase;
+                $rootScope.$broadcast('phaseselect', p);
+            },
+            get: function(phase) {
+                return p;
+            }
+        };
+    });
