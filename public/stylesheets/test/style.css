@@ -1,0 +1,33 @@
+.container {
+    position: relative;
+}
+
+.row-fluid [class*="span"].detail {
+    min-height: 410px;
+}
+
+.message {
+    right: 0;
+    position: absolute;
+}
+
+.delete {
+    margin-top: 10px;
+}
+
+.control-label {
+    top: -6px;
+    position: relative;
+}
+
+.coords {
+    font-size: .8em;
+    top: 20px;
+    right: 0;
+    position: absolute;
+}
+
+#ground {
+    height: 570px;
+    border: 1px solid black;
+}

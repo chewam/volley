@@ -1,0 +1,22 @@
+extends layout2
+
+block content
+    div.container
+
+        div.pull-right.message(ng:controller="MessageCtrl")
+            div(ng:show="message.visible", ng:model="message.text") {{message.text}}
+
+        div.row-fluid
+
+            div.span3(ng:controller="PhasesListCtrl")
+                h3.page-header Phases
+
+                ul.list
+                    li(ng:repeat="phase in phases")
+                        a(href="#/phases/{{phase.id}}") {{phase.name}}
+
+                div.input-append
+                    input.span7(ng:model="newPhase.name", type="text", placeholder="Phase name...")
+                    button.btn(ng:click="create()", type="button") Create
+
+            div.span9.detail(ng:view)
