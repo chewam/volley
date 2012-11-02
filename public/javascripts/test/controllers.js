@@ -105,7 +105,7 @@ function PhasesListCtrl($scope, $message) {
     $scope.init = function() {
         $scope.phase = false;
         $scope.phases = Phases.items;
-        $scope.select($scope.phases[0]);
+        // $scope.select($scope.phases[0]);
         $scope.reset();
         setInterval(function() {
             $scope.save();
