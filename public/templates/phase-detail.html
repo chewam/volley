@@ -1,19 +1,19 @@
 <h3 class="page-header">
     {{phase.name}}
     <a class="btn btn-small btn-danger pull-right delete" ng:click="destroy()">Delete</a>
+    <a class="btn btn-small btn-toto pull-right details" ng:class="showDetails" ng:click="toggleDetails()">Details</a>
 </h3>
-<form class="form-horizontal">
+<form class="form-horizontal" ng:show="showDetails">
     <div class="control-group" ng:repeat="(index, position) in phase.positions">
         <label class="control-label">
             Player {{index}}
             <div class="coords">x:{{position.x | number:1}} y:{{position.y | number:1}}</div>
         </label>
-        <div class="controls">
-            <input class="input-medium" type="text" name="player" ng:model="position.player" placeholder="Player name...">
-            <select class="input-small" ng:model="role" ng:options="r.value for r in roles"></select>
-            <input type="checkbox" ng:model="position.libero">
-            <input class="input-medium" type="text" name="libero" ng:model="phase.libero.player" ng:show="position.libero" placeholder="Libero name...">
-            <!-- <span class="help-block">x:{{position.x}} y:{{position.y}}</span> -->
+        <div class="controls controls-row">
+            <input class="span2" type="text" name="player" ng:model="position.player" ng:d­isa­ble­d­="position.libero" placeholder="Player name...">
+            <select class="span2" ng:model="position.role" ng:options="r.value as r.label for r in roles"></select>
+            <input class="span1" type="checkbox" ng:model="position.libero" ng:click="onLiberoClick(position, index)">
+            <input class="span2" type="text" name="libero" ng:model="phase.libero.player" ng:show="position.libero" placeholder="Libero name...">
         </div>
     </div>
 </form>

@@ -1,7 +1,7 @@
 extends layout2
 
 block content
-    div.container
+    div.container-fluid
 
         div.pull-right.message(ng:controller="MessageCtrl")
             div(ng:show="message.visible", ng:model="message.text") {{message.text}}
@@ -19,4 +19,8 @@ block content
                     input.span7(ng:model="newPhase.name", type="text", placeholder="Phase name...")
                     button.btn(ng:click="create()", type="button") Create
 
-            div.span9.detail(ng:view)
+            div.span9
+                div.detail-container
+                    div.detail(ng:view)
+                        h3.page-header No phase selected...
+                div#ground(ng:controller="GroundCtrl")

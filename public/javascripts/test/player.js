@@ -41,8 +41,8 @@ Player.prototype.draw = function() {
         y = this.margin / 2;
 
     this.shape = this.paper.circle(x, y, this.size);
-    this.number = this.paper.text(x, y, this.index);
-    this.detail = this.paper.text(x, (y + this.size + 0.1) * this.scale.width, '');
+    this.number = this.paper.text(x * this.scale.width, y * this.scale.width, this.index);
+    this.detail = this.paper.text(x * this.scale.width, (y + this.size + 0.1) * this.scale.width, '');
     this.shape.transform('s'+this.scale.width+','+this.scale.width+',0,0');
     this.shape.attr({
         fill: "hsb(0, 1, 1)",

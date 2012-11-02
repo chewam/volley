@@ -2,32 +2,57 @@
     position: relative;
 }
 
-.row-fluid [class*="span"].detail {
-    min-height: 410px;
+.empty {
+    padding: 100px;
 }
 
 .message {
-    right: 0;
+    right: 20px;
     position: absolute;
 }
 
-.delete {
-    margin-top: 10px;
+.detail-container {
+    /*height: 360px;*/
+    min-height: 100px;
+    /*border: none;*/
+    border: 1px solid white;
 }
 
-.control-label {
+.detail .page-header .btn {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.detail .delete {
+    
+}
+
+.detail .control-label {
     top: -6px;
     position: relative;
 }
 
-.coords {
-    font-size: .8em;
-    top: 20px;
+.detail .form-horizontal .control-group {
+    margin-bottom: 10px;
+}
+
+.detail .form-horizontal input[type="checkbox"] {
+    width: 20px;
+}
+
+.detail .controls-row [class*="span"] + [class*="span"] {
+    margin-left: 10px;
+}
+
+.detail .coords {
     right: 0;
+    top: 20px;
+    color: #AAAAAA;
+    font-size: .7em;
     position: absolute;
 }
 
 #ground {
-    height: 570px;
+    height: 500px;
     border: 1px solid black;
 }

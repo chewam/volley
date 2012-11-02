@@ -1,23 +1,5 @@
 // 'use strict';
 
-function getPhaseById(id) {
-    for (var i = 0, l = Phases.items.length; i < l; i++) {
-        if (Phases.items[i].id === id) {
-            return Phases.items[i];
-        }
-    }
-    return false;
-}
-
-function getPhaseIndexById(id) {
-    for (var i = 0, l = Phases.items.length; i < l; i++) {
-        if (Phases.items[i].id === id) {
-            return i;
-        }
-    }
-    return false;
-}
-
 function GroundCtrl($scope, $ground) {
     $ground.set(new Ground({
         height: 9,
@@ -28,22 +10,37 @@ function GroundCtrl($scope, $ground) {
 
 GroundCtrl.$inject = ['$scope', 'ground'];
 
+/**********/
+
 function MessageCtrl($scope) {
     $scope.message = Message;
     Message.$scope = $scope;
 }
 
+/**********/
+
 function PhaseDetailCtrl($scope, $routeParams, $ground) {
     $scope.roles = Roles;
-    $scope.role = Roles[0];
+    $scope.showDetails = false;
+    $scope.liberoIndex = false;
     $scope.id = $routeParams.id;
     $scope.phase = getPhaseById($scope.id);
+
+    console.log('phase', $scope.phase);
 
     $ground.on('playermove', function() {
         $scope.$digest();
     }, this);
 
     $ground.get().setPhase($scope.phase);
+
+    $scope.toggleDetails = function() {
+        if(!$scope.showDetails) {
+            $scope.showDetails = 'active';
+        } else {
+            $scope.showDetails = false;
+        }
+    };
 
     $scope.destroy = function() {
         var index = getPhaseIndexById($scope.id);
@@ -55,14 +52,28 @@ function PhaseDetailCtrl($scope, $routeParams, $ground) {
             window.location.hash = '/phases';
         }
     };
+
+    $scope.onLiberoClick = function(position, index) {
+        for (var key in $scope.phase.positions) {
+            if (key !== index && $scope.phase.positions[key].libero) {
+                $scope.phase.positions[key].libero = false;
+            }
+        }
+    };
+
 }
 
 PhaseDetailCtrl.$inject = ['$scope', '$routeParams', 'ground'];
 
+/**********/
+
 function PhasesListCtrl($scope, $message) {
 
     $scope.select = function(phase) {
-        window.location.hash = '/phases/' + phase.id;
+        if (phase) {
+            $scope.phase = phase;
+            window.location.hash = '/phases/' + phase.id;
+        }
     };
 
     $scope.create = function() {
@@ -92,7 +103,9 @@ function PhasesListCtrl($scope, $message) {
     };
 
     $scope.init = function() {
+        $scope.phase = false;
         $scope.phases = Phases.items;
+        $scope.select($scope.phases[0]);
         $scope.reset();
         setInterval(function() {
             $scope.save();

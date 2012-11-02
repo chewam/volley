@@ -6,6 +6,26 @@ Array.prototype.remove = function(from, to) {
     return this.push.apply(this, rest);
 };
 
+function getPhaseById(id) {
+    for (var i = 0, l = Phases.items.length; i < l; i++) {
+        if (Phases.items[i].id === id) {
+            return Phases.items[i];
+        }
+    }
+    return false;
+}
+
+function getPhaseIndexById(id) {
+    for (var i = 0, l = Phases.items.length; i < l; i++) {
+        if (Phases.items[i].id === id) {
+            return i;
+        }
+    }
+    return false;
+}
+
+/**********/
+
 var Roles = [{
     value: 'setter',
     label: 'Passeur'
