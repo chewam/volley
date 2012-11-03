@@ -1,14 +1,16 @@
 <h3 class="page-header">
     {{phase.name}}
     <a class="btn btn-small btn-danger pull-right delete" ng:click="destroy()">Delete</a>
-    <a class="btn btn-small btn-toto pull-right details" ng:class="showDetails" ng:click="toggleDetails()">Details</a>
+    <a class="btn btn-small pull-right details" ng:class="detailsVisible" ng:click="toggleDetails()">Details</a>
+    <a class="btn btn-small pull-right draw">Draw</a>
+    <a class="btn btn-small pull-right erase" ng:click="eraseDrawings()" ng:show="phase.drawings">Erase drawings</a>
 </h3>
-<form class="form-horizontal" ng:show="showDetails" ng:init="rows = [[5, 6, 1], [4, 3, 2]]">
+<form class="form-horizontal" ng:show="detailsVisible" ng:init="rows = [[5, 6, 1], [4, 3, 2]]">
 
     <div class="control-group">
         <label class="control-label">Phase</label>
         <div class="controls">
-            <input class="" type="text" ng:model="phase.name" placeholder="Phase name...">
+            <input type="text" ng:model="phase.name" placeholder="Phase name..." style="width:255px;">
         </div>
     </div>
 

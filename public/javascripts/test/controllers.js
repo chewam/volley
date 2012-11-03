@@ -47,7 +47,7 @@ function MessageCtrl($scope) {
 
 function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
     $scope.roles = Roles;
-    $scope.showDetails = false;
+    $scope.detailsVisible = false;
     $scope.liberoIndex = false;
     $scope.id = $routeParams.id;
     $scope.phase = getPhaseById($scope.id);
@@ -58,10 +58,10 @@ function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
     }, this);
 
     $scope.toggleDetails = function() {
-        if(!$scope.showDetails) {
-            $scope.showDetails = 'active';
+        if(!$scope.detailsVisible) {
+            $scope.detailsVisible = 'active';
         } else {
-            $scope.showDetails = false;
+            $scope.detailsVisible = false;
         }
     };
 
@@ -83,7 +83,11 @@ function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
             }
         }
         $ground.get().setPhase($scope.phase);
-        // return true;
+    };
+
+    $scope.eraseDrawings = function() {
+        $ground.get().removeDrawings();
+        this.phase.drawings = null;
     };
 
 }
