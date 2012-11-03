@@ -63,6 +63,24 @@ Ground.prototype.drawField = function() {
 
     this.paper.path(
         'M'+(this.width / 2 + this.margin - 3) +
+        ' '+(this.margin / 2) +
+        'L'+(this.width / 2 + this.margin - 3) +
+        ' '+(this.height + this.margin * 1.5)
+    ).
+    transform('s'+this.scale+','+this.scale+',0,0').
+    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': 'black', 'stroke-opacity': 1});
+
+    this.paper.path(
+        'M'+(this.margin) +
+        ' '+(this.height + this.margin * 1.5) +
+        'L'+(this.width / 2 + this.margin - 3) +
+        ' '+(this.height + this.margin * 1.5)
+    ).
+    transform('s'+this.scale+','+this.scale+',0,0').
+    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': 'black', 'stroke-opacity': 1});
+
+    this.paper.path(
+        'M'+(this.width / 2 + this.margin - 3) +
         ' '+(this.margin) +
         'L'+(this.width / 2 + this.margin - 3) +
         ' '+(this.height + this.margin)
@@ -70,9 +88,55 @@ Ground.prototype.drawField = function() {
 
     this.paper.path(
         'M'+(this.width / 2 + this.margin + 3) +
+        ' '+(this.margin / 2) +
+        'L'+(this.width / 2 + this.margin + 3) +
+        ' '+(this.height + this.margin * 1.5)
+    ).
+    transform('s'+this.scale+','+this.scale+',0,0').
+    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': 'black', 'stroke-opacity': 1});
+
+    this.paper.path(
+        'M'+(this.width / 2 + this.margin + 3) +
+        ' '+(this.height + this.margin * 1.5) +
+        'L'+(this.width + this.margin) +
+        ' '+(this.height + this.margin * 1.5)
+    ).
+    transform('s'+this.scale+','+this.scale+',0,0').
+    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': 'black', 'stroke-opacity': 1});
+
+    this.paper.path(
+        'M'+(this.width / 2 + this.margin + 3) +
         ' '+(this.margin) +
         'L'+(this.width / 2 + this.margin + 3) +
         ' '+(this.height + this.margin)
+    ).transform('s'+this.scale+','+this.scale+',0,0');
+
+    this.paper.path(
+        'M'+(this.margin - 0.3) +
+        ' '+(this.margin) +
+        'L'+(this.margin - 0.1) +
+        ' '+(this.margin)
+    ).transform('s'+this.scale+','+this.scale+',0,0');
+
+    this.paper.path(
+        'M'+(this.margin - 0.3) +
+        ' '+(this.margin + this.height) +
+        'L'+(this.margin - 0.1) +
+        ' '+(this.margin + this.height)
+    ).transform('s'+this.scale+','+this.scale+',0,0');
+
+    this.paper.path(
+        'M'+(this.margin + this.width + 0.1) +
+        ' '+(this.margin) +
+        'L'+(this.margin + this.width + 0.3) +
+        ' '+(this.margin)
+    ).transform('s'+this.scale+','+this.scale+',0,0');
+
+    this.paper.path(
+        'M'+(this.margin + this.width + 0.1) +
+        ' '+(this.margin + this.height) +
+        'L'+(this.margin + this.width + 0.3) +
+        ' '+(this.margin + this.height)
     ).transform('s'+this.scale+','+this.scale+',0,0');
 };
 
