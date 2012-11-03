@@ -18,12 +18,12 @@ Player.prototype.onMoveStart = function(x, y, event) {
 };
 
 Player.prototype.onMove = function(dx, dy) {
-    var x = this.shape.ox + dx / this.scale.width,
-        y = this.shape.oy + dy / this.scale.width;
+    var x = this.shape.ox + dx / this.scale,
+        y = this.shape.oy + dy / this.scale;
 
     this.shape.attr({cx: x, cy: y});
-    this.detail.attr({x: x * this.scale.width, y: (y + this.size + 0.1) * this.scale.width});
-    this.number.attr({x: x * this.scale.width, y: y * this.scale.width});
+    this.detail.attr({x: x * this.scale, y: (y + this.size + 0.1) * this.scale});
+    this.number.attr({x: x * this.scale, y: y * this.scale});
 };
 
 Player.prototype.onMoveEnd = function() {
@@ -41,9 +41,9 @@ Player.prototype.draw = function() {
         y = this.margin / 2;
 
     this.shape = this.paper.circle(x, y, this.size);
-    this.number = this.paper.text(x * this.scale.width, y * this.scale.width, this.index);
-    this.detail = this.paper.text(x * this.scale.width, (y + this.size + 0.2) * this.scale.width, '');
-    this.shape.transform('s'+this.scale.width+','+this.scale.width+',0,0');
+    this.number = this.paper.text(x * this.scale, y * this.scale, this.index);
+    this.detail = this.paper.text(x * this.scale, (y + this.size + 0.2) * this.scale, '');
+    this.shape.transform('s'+this.scale+','+this.scale+',0,0');
     this.shape.attr({
         fill: this.fill,
         stroke: 'none',
@@ -93,6 +93,6 @@ Player.prototype.move = function(x, y) {
     x = this.width / 2 - x + this.margin;
     y = y + this.margin;
     this.shape.attr({cx: x, cy: y});
-    this.detail.attr({x: x * this.scale.width, y: (y + this.size + 0.3) * this.scale.width});
-    this.number.attr({x: x * this.scale.width, y: y * this.scale.width});
+    this.detail.attr({x: x * this.scale, y: (y + this.size + 0.3) * this.scale});
+    this.number.attr({x: x * this.scale, y: y * this.scale});
 };

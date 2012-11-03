@@ -13,7 +13,7 @@ Ground.prototype.initConfig = function(config) {
 
 Ground.prototype.draw = function() {
     if (!this.paper) {
-        this.paper = Raphael('ground', '100%', '100%');
+        this.paper = Raphael(this.renderTo, '100%', '100%');
     }
 
     this.paper.clear();
@@ -23,12 +23,11 @@ Ground.prototype.draw = function() {
 };
 
 Ground.prototype.drawField = function() {
-    var el = document.getElementById('ground');
+    var el = document.getElementById(this.renderTo);
 
-    this.scale = {
-        width: el.clientWidth / (this.width + this.margin * 2),
-        height: el.clientHeight / (this.height + this.margin * 2)
-    };
+    this.scale = el.clientWidth / (this.width + this.margin * 2);
+
+    el.style.height = ((this.height + this.margin * 2) * this.scale) + 'px';
 
     this.field = this.paper.rect(
         this.margin,
@@ -37,28 +36,28 @@ Ground.prototype.drawField = function() {
         this.height
     );
     this.field.attr({fill: '#FFFFFF'});
-    this.field.transform('s'+this.scale.width+','+this.scale.width+',0,0');
+    this.field.transform('s'+this.scale+','+this.scale+',0,0');
 
     this.paper.path(
         'M'+(this.width / 2 + this.margin) +
         ' '+(this.margin / 2) +
         'L'+(this.width / 2 + this.margin) +
         ' '+(this.height + this.margin + this.margin / 2)
-    ).transform('s'+this.scale.width+','+this.scale.width+',0,0');
+    ).transform('s'+this.scale+','+this.scale+',0,0');
 
     this.paper.path(
         'M'+(this.width / 2 + this.margin - 3) +
         ' '+(this.margin) +
         'L'+(this.width / 2 + this.margin - 3) +
         ' '+(this.height + this.margin)
-    ).transform('s'+this.scale.width+','+this.scale.width+',0,0');
+    ).transform('s'+this.scale+','+this.scale+',0,0');
 
     this.paper.path(
         'M'+(this.width / 2 + this.margin + 3) +
         ' '+(this.margin) +
         'L'+(this.width / 2 + this.margin + 3) +
         ' '+(this.height + this.margin)
-    ).transform('s'+this.scale.width+','+this.scale.width+',0,0');
+    ).transform('s'+this.scale+','+this.scale+',0,0');
 };
 
 Ground.prototype.drawTeam = function() {
@@ -91,7 +90,7 @@ Ground.prototype.initDrawing = function() {
             y = evt.pageY;
         }
 
-        var el = document.getElementById('ground'),
+        var el = document.getElementById(this.renderTo),
             l = el.offsetLeft,
             t = el.offsetTop;
 

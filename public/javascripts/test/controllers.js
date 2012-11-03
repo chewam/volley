@@ -26,7 +26,8 @@ function GroundCtrl($scope, $ground) {
             $ground.set(new Ground({
                 height: 9,
                 width: 18,
-                margin: 2
+                margin: 2,
+                renderTo: 'ground'
             }));
         }
     };
