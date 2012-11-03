@@ -22,7 +22,6 @@ angular.module('test', []).
                 Message.visible = false;
                 Message.$scope.$digest();
             }, 3000);
-            console.log('Message', Message, message);
         };
     }]).
     factory('ground', [function() {

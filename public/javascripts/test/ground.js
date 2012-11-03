@@ -26,11 +26,10 @@ Ground.prototype.draw = function() {
     this.drawField();
     this.drawBackground();
     this.drawTeam();
-    this.initDrawing();
+    this.enableDrawing();
 };
 
 Ground.prototype.drawBackground = function() {
-    console.log('drawBackground', this.paper, this.paper.height);
     this.background = this.paper.rect(
         0,
         0,
@@ -87,25 +86,57 @@ Ground.prototype.drawTeam = function() {
 };
 
 Ground.prototype.setPhase = function(phase) {
+    this.phase = phase;
+
     if (phase) {
+        this.removeDrawings();
+        this.addDrawings();
         this.team.setPositions(phase.positions, phase.libero);
     }
 };
 
-Ground.prototype.initDrawing = function() {
-    var me = this, pathArray, drawingBox, l, t,
+Ground.prototype.addDrawings = function() {
+    if (this.phase && this.phase.drawings) {
+        for (var i = 0, l = this.phase.drawings.length; i < l; i++) {
+            this.drawings.push(
+                this.paper.path(this.phase.drawings[i]).
+                    attr({stroke: "#000000","stroke-width": 3})
+            );
+        }
+    } else if (this.phase) {
+        this.phase.drawings = [];
+    }
+};
+
+Ground.prototype.removeDrawings = function() {
+    if (this.drawings) {
+        for (var i = 0, l = this.drawings.length; i < l; i++) {
+            this.drawings[i].remove();
+        }
+        this.drawings.length = 0;
+    }
+};
+
+Ground.prototype.enableDrawing = function() {
+    this.drawings = [];
+
+    var me = this, pathArray, l, t, p, index,
         up = function () {},
         start = function () { pathArray = []; },
         move = function (dx, dy) {
             if (pathArray.length === 0) {
                 pathArray[0] = ["M", this.ox, this.oy];
-                drawingBox = me.paper.path(pathArray);
-                drawingBox.attr({stroke: "#000000","stroke-width": 3});
+                p = me.paper.path(pathArray);
+                p.attr({stroke: "#000000","stroke-width": 3});
+                index = me.drawings.length;
+                me.drawings.push(p);
+            } else {
+                pathArray[pathArray.length] = ["L", this.ox, this.oy];
             }
-            else
-                pathArray[pathArray.length] =["L", this.ox, this.oy];
-
-            drawingBox.attr({path: pathArray});
+            p.attr({path: pathArray});
+            if (me.phase) {
+                me.phase.drawings[index] = pathArray;
+            }
         },
         mousemove = function (evt) {
             var x, y,
