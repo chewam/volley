@@ -5,6 +5,11 @@ angular.module('test', []).
                 templateUrl: '/templates/empty.html',
                 controller: MainCtrl
             }).
+            when('/phases/:id/:data', {
+                // templateUrl: '/templates/phase-detail.html',
+                templateUrl: '/templates/empty.html',
+                controller: ImportPhaseCtrl
+            }).
             when('/phases/:id', {
                 templateUrl: '/templates/phase-detail.html',
                 controller: PhaseDetailCtrl

@@ -45,7 +45,7 @@ function MessageCtrl($scope) {
 
 /**********/
 
-function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
+function PhaseDetailCtrl($scope, $location, $routeParams, $ground, $phaseService) {
     $scope.roles = Roles;
     $scope.detailsVisible = false;
     $scope.liberoIndex = false;
@@ -114,9 +114,38 @@ function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
         $('img', $('#modal').modal('show')).attr('src', data);
     };
 
+    $scope.showPermalink = function() {
+        var phase = angular.copy($scope.phase),
+            link = $location.protocol() +
+            '://' + $location.host() +
+            ($location.port() ? ':'+$location.port() : '') +
+            '/test/#/phases/';
+
+        phase.name = 'Copy of ' + phase.name;
+        phase.id = btoa(phase.name);
+        link += phase.id + '/' + JSON.stringify(phase);
+
+        // link = 'http://volley.chewam.com/';
+
+        $.getJSON("http://api.bitly.com/v3/shorten?callback=?", {
+            format: 'json',
+            apiKey: 'R_a81a7f598dff7efa0a0cf2c5cbe19681',
+            login: 'goldledoigt',
+            longUrl: link
+        }, function(response) {
+            if (response.status_text === 'OK') {
+                link = response.data.url;
+            }
+            console.log('showPermalink', response, response.data.url);
+            $('.modal-body a', $('#permalink-modal').modal('show'))
+            .attr('href', link)
+            .text(link);
+        });
+    };
+
 }
 
-PhaseDetailCtrl.$inject = ['$scope', '$routeParams', 'ground', 'phaseService'];
+PhaseDetailCtrl.$inject = ['$scope', '$location', '$routeParams', 'ground', 'phaseService'];
 
 /**********/
 
@@ -166,3 +195,15 @@ function PhasesListCtrl($scope, $message) {
 }
 
 PhasesListCtrl.$inject = ['$scope', 'message'];
+
+/**********/
+
+function ImportPhaseCtrl($scope, $routeParams) {
+    var phase = JSON.parse($routeParams.data);
+    console.warn('ImportPhaseCtrl', $routeParams.id, $routeParams.data);
+
+    Phases.items.push(phase);
+    window.location.hash = '/phases/' + $routeParams.id;
+}
+
+ImportPhaseCtrl.$inject = ['$scope', '$routeParams'];
