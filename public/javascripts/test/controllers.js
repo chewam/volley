@@ -83,12 +83,13 @@ function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
         }
     };
 
-    $scope.onLiberoClick = function(position, index) {
+    $scope.onLiberoClick = function(index) {
         for (var key in $scope.phase.positions) {
-            if (key !== index && $scope.phase.positions[key].libero) {
+            if (key != index && $scope.phase.positions[key].libero) {
                 $scope.phase.positions[key].libero = false;
             }
         }
+        return true;
     };
 
 }
@@ -134,7 +135,6 @@ function PhasesListCtrl($scope, $message) {
     };
 
     $scope.init = function() {
-        // $scope.phase = false;
         $scope.phases = Phases;
         // $scope.select($scope.phases[0]);
         $scope.reset();

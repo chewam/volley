@@ -27,9 +27,14 @@
     
 }
 
-.detail .control-label {
+.detail .form-horizontal .control-label {
     top: -6px;
+    width: 60px;
     position: relative;
+}
+
+.detail .form-horizontal .controls {
+    margin-left: 75px;
 }
 
 .detail .form-horizontal .control-group {
@@ -41,7 +46,7 @@
 }
 
 .detail .controls-row [class*="span"] + [class*="span"] {
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .detail .coords {

@@ -45,7 +45,7 @@ angular.module('test', []).
         };
     }]).
     service('phaseService', function($rootScope) {
-        var p;
+        var p = null;
 
         return {
             set: function(phase) {
