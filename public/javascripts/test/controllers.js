@@ -79,11 +79,8 @@ function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
                 $scope.phase.positions[key].libero = false;
             }
         }
-        // if ($scope.phase.positions[key].libero) {
-            $ground.get().setPhase($scope.phase);
-            // $scope.$broadcast('liberoselect', index);
-        // }
-        return true;
+        $ground.get().setPhase($scope.phase);
+        // return true;
     };
 
 }

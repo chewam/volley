@@ -90,9 +90,13 @@ Ground.prototype.initDrawing = function() {
             x = evt.pageX;
             y = evt.pageY;
         }
-        // subtract paper coords on page
-        this.ox = x - me.margin * me.scale.width - 25;
-        this.oy = y - me.height * me.scale.width - 25;
+
+        var el = document.getElementById('ground'),
+            l = el.offsetLeft,
+            t = el.offsetTop;
+
+        this.ox = x - l;
+        this.oy = y - t;
     });
 
     var start = function () {

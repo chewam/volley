@@ -29,16 +29,9 @@ Team.prototype.draw = function() {
 };
 
 Team.prototype.setPositions = function(positions, libero) {
-    // this.text = this.paper.text(100, 100, 'pof');
     for(var key in this.players) {
         if (positions[key]) {
             this.players[key].setPosition(positions[key], libero);
-            // if (positions[key].libero) {
-            //     console.log('setPosition', key, libero);
-            //     this.libero.setPosition(positions[key]);
-            // } else {
-            //     this.players[key].setPosition(positions[key], libero);
-            // }
         }
     }
 };

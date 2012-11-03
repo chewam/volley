@@ -57,14 +57,12 @@ Player.prototype.setPosition = function(position, libero) {
     this.move(position.x, position.y);
 
     if (position.libero) {
-        console.log('setPosition', position, libero);
         this.setDetail(libero);
         this.setAppearance(libero);
     } else {
         this.setDetail(position);
         this.setAppearance(position);
     }
-    // this.setDetail(position);
 };
 
 Player.prototype.setAppearance = function(position) {
