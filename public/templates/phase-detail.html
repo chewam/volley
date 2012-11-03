@@ -5,6 +5,13 @@
 </h3>
 <form class="form-horizontal" ng:show="showDetails" ng:init="rows = [[5, 6, 1], [4, 3, 2]]">
 
+    <div class="control-group">
+        <label class="control-label">Phase</label>
+        <div class="controls">
+            <input class="" type="text" ng:model="phase.name" placeholder="Phase name...">
+        </div>
+    </div>
+
     <div class="row-fluid">
 
         <div class="span{{7 - rowIndex * 2}}" ng:repeat="(rowIndex, row) in rows">
@@ -16,12 +23,10 @@
                 <div class="controls controls-row" ng:switch="index > 4 || index < 2">
                     <input class="span{{4 + rowIndex * 2}}" type="text" ng:model="phase.positions[index].player" ng:d­isa­ble­d­="phase.positions[index].libero" placeholder="Player name...">
                     <select class="span{{4 + rowIndex}}" ng:model="phase.positions[index].role" ng:options="r.value as r.label for r in roles"></select>
-                    <!-- <ng-switch when="true"> -->
                     <span ng:switch:when="true">
                         <input class="span1" type="checkbox" ng:model="phase.positions[index].libero" ng:click="onLiberoClick(index)">
                         <input class="span3" type="text" ng:model="phase.libero.player" ng:show="phase.positions[index].libero" placeholder="Libero name...">
                     </span>
-                    <!-- </ng-switch> -->
                 </div>
             </div>
 

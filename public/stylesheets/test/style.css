@@ -28,8 +28,11 @@
 }
 
 .detail .form-horizontal .control-label {
-    top: -6px;
     width: 60px;
+}
+
+.detail .form-horizontal .row-fluid .control-label {
+    top: -6px;
     position: relative;
 }
 
