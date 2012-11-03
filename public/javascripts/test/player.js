@@ -37,12 +37,12 @@ Player.prototype.onMoveEnd = function() {
 };
 
 Player.prototype.draw = function() {
-    var x = this.margin + (this.index - 1) * (this.size * 2 + 0.1),
+    var x = this.margin + (this.index - 1) * (this.size * 2 + 0.5),
         y = this.margin / 2;
 
     this.shape = this.paper.circle(x, y, this.size);
     this.number = this.paper.text(x * this.scale.width, y * this.scale.width, this.index);
-    this.detail = this.paper.text(x * this.scale.width, (y + this.size + 0.1) * this.scale.width, '');
+    this.detail = this.paper.text(x * this.scale.width, (y + this.size + 0.2) * this.scale.width, '');
     this.shape.transform('s'+this.scale.width+','+this.scale.width+',0,0');
     this.shape.attr({
         fill: this.fill,
@@ -52,9 +52,16 @@ Player.prototype.draw = function() {
     this.shape.drag(this.onMove, this.onMoveStart, this.onMoveEnd, this, this, this);
 };
 
-Player.prototype.setPosition = function(position, libero) {
+Player.prototype.setPosition = function(position, libero, index) {
     this.position = position;
-    this.move(position.x, position.y);
+    if (position.x || position.y) {
+        this.move(position.x, position.y);
+    } else {
+        var x = this.margin + (this.index - 1) * (this.size * 2 + 0.5),
+            y = -(this.margin / 2);
+
+        this.move(x, y);
+    }
 
     if (position.libero) {
         this.setDetail(libero);

@@ -31,7 +31,7 @@ Team.prototype.draw = function() {
 Team.prototype.setPositions = function(positions, libero) {
     for(var key in this.players) {
         if (positions[key]) {
-            this.players[key].setPosition(positions[key], libero);
+            this.players[key].setPosition(positions[key], libero, key);
         }
     }
 };

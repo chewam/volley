@@ -13,10 +13,12 @@ function GroundCtrl($scope, $ground) {
 
     $scope.$on('phaseselect', function(scope, phase) {
         $scope.phase = phase;
-        setTimeout(function() {
-            $scope.createGround();
-            $ground.get().setPhase(phase);
-        }, 50);
+        if (phase) {
+            setTimeout(function() {
+                $scope.createGround();
+                $ground.get().setPhase(phase);
+            }, 50);
+        }
     });
 
     $scope.createGround = function() {
@@ -112,7 +114,7 @@ function PhasesListCtrl($scope, $message) {
 
     $scope.save = function() {
         Phases.items = $scope.phases.items;
-        if (Phases.items && Phases.items.length) {
+        // if (Phases.items && Phases.items.length) {
             var phases = JSON.stringify(Phases.items),
                 storedPhases = window.localStorage.getItem('phases');
 
@@ -120,7 +122,7 @@ function PhasesListCtrl($scope, $message) {
                 $message('Saving...');
                 window.localStorage.setItem('phases', phases);
             }
-        }
+        // }
     };
 
     $scope.init = function() {
