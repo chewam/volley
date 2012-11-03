@@ -63,9 +63,13 @@ function PhaseDetailCtrl($scope, $location, $routeParams, $ground, $phaseService
 
     $scope.toggleDetails = function() {
         if(!$scope.detailsVisible) {
+            console.log('active');
             $scope.detailsVisible = 'active';
+            $('.detail form').collapse('show');
         } else {
+            console.log('inactive');
             $scope.detailsVisible = false;
+            $('.detail form').collapse('hide');
         }
     };
 
