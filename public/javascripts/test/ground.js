@@ -26,7 +26,7 @@ Ground.prototype.draw = function() {
     this.drawField();
     this.drawBackground();
     this.drawTeam();
-    this.enableDrawing();
+    this.initDrawing();
 };
 
 Ground.prototype.drawBackground = function() {
@@ -117,14 +117,20 @@ Ground.prototype.removeDrawings = function() {
     }
 };
 
-Ground.prototype.enableDrawing = function() {
+Ground.prototype.initDrawing = function() {
     this.drawings = [];
 
     var me = this, pathArray, l, t, p, index,
-        up = function () {},
+        up = function () {
+            eve('drawing');
+        },
         start = function () { pathArray = []; },
         move = function (dx, dy) {
+            if (me.phase && !me.phase.drawingEnabled) return;
             if (pathArray.length === 0) {
+                if (!me.phase.drawings) {
+                    me.phase.drawings = [];
+                }
                 pathArray[0] = ["M", this.ox, this.oy];
                 p = me.paper.path(pathArray);
                 p.attr({stroke: "#000000","stroke-width": 3});

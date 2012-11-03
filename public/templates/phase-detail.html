@@ -2,7 +2,7 @@
     {{phase.name}}
     <a class="btn btn-small btn-danger pull-right delete" ng:click="destroy()">Delete</a>
     <a class="btn btn-small pull-right details" ng:class="detailsVisible" ng:click="toggleDetails()">Details</a>
-    <a class="btn btn-small pull-right draw">Draw</a>
+    <a class="btn btn-small pull-right draw" ng:class="phase.drawingEnabled" ng:click="toggleDrawing()">Draw</a>
     <a class="btn btn-small pull-right erase" ng:click="eraseDrawings()" ng:show="phase.drawings">Erase drawings</a>
 </h3>
 <form class="form-horizontal" ng:show="detailsVisible" ng:init="rows = [[5, 6, 1], [4, 3, 2]]">

@@ -57,6 +57,10 @@ function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
         $scope.$digest();
     }, this);
 
+    $ground.on('drawing', function() {
+        $scope.$digest();
+    }, this);
+
     $scope.toggleDetails = function() {
         if(!$scope.detailsVisible) {
             $scope.detailsVisible = 'active';
@@ -83,6 +87,16 @@ function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
             }
         }
         $ground.get().setPhase($scope.phase);
+    };
+
+    $scope.toggleDrawing = function() {
+        if ($scope.phase) {
+            if ($scope.phase.drawingEnabled) {
+                $scope.phase.drawingEnabled = false;
+            } else {
+                $scope.phase.drawingEnabled = 'active';
+            }
+        }
     };
 
     $scope.eraseDrawings = function() {
