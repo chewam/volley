@@ -1,7 +1,6 @@
 // 'use strict';
 
 function MainCtrl($scope, $phaseService) {
-    console.log('MainCtrl');
     $phaseService.set(null);
 }
 
@@ -12,11 +11,7 @@ MainCtrl.$inject = ['$scope', 'phaseService'];
 function GroundCtrl($scope, $ground) {
     $scope.phase = false;
 
-    console.log('GroundCtrl', $scope.phase);
-
     $scope.$on('phaseselect', function(scope, phase) {
-        console.error('phaseselect', this, arguments);
-
         $scope.phase = phase;
         setTimeout(function() {
             $scope.createGround();
@@ -55,14 +50,9 @@ function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
     $scope.phase = getPhaseById($scope.id);
     $phaseService.set($scope.phase);
 
-    // $scope.$emit('someEvent', [42]);
-    console.log('PhaseDetailCtrl', $scope.phase, $routeParams.id);
-
     $ground.on('playermove', function() {
         $scope.$digest();
     }, this);
-
-    // $ground.get().setPhase($scope.phase);
 
     $scope.toggleDetails = function() {
         if(!$scope.showDetails) {
@@ -89,6 +79,10 @@ function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
                 $scope.phase.positions[key].libero = false;
             }
         }
+        // if ($scope.phase.positions[key].libero) {
+            $ground.get().setPhase($scope.phase);
+            // $scope.$broadcast('liberoselect', index);
+        // }
         return true;
     };
 
@@ -99,8 +93,6 @@ PhaseDetailCtrl.$inject = ['$scope', '$routeParams', 'ground', 'phaseService'];
 /**********/
 
 function PhasesListCtrl($scope, $message) {
-
-    console.log('PhasesListCtrl');
 
     $scope.select = function(phase) {
         if (phase) {
@@ -136,7 +128,6 @@ function PhasesListCtrl($scope, $message) {
 
     $scope.init = function() {
         $scope.phases = Phases;
-        // $scope.select($scope.phases[0]);
         $scope.reset();
         setInterval(function() {
             $scope.save();

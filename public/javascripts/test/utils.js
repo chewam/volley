@@ -54,7 +54,7 @@ var Phases = {
     defaults: {
         name: '',
         id: '',
-        libero: {x: 0, y: 0, player: ''},
+        libero: {x: 0, y: 0, player: '', role: 'libero'},
         positions: {
             1: {x: 0, y: 0, libero: false, role: 'defender', player: ''},
             2: {x: 0, y: 0, libero: false, role: 'setter', player: ''},

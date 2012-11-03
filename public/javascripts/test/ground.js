@@ -72,7 +72,7 @@ Ground.prototype.drawTeam = function() {
 
 Ground.prototype.setPhase = function(phase) {
     if (phase) {
-        this.team.setPositions(phase.positions);
+        this.team.setPositions(phase.positions, phase.libero);
     }
 };
 

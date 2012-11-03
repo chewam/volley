@@ -21,17 +21,24 @@ Team.prototype.draw = function() {
             width: this.width,
             scale: this.scale,
             paper: this.paper,
-            margin: this.margin
+            margin: this.margin,
+            fill: "hsb(0, 1, 1)"
         });
     }
 
 };
 
-Team.prototype.setPositions = function(positions) {
+Team.prototype.setPositions = function(positions, libero) {
     // this.text = this.paper.text(100, 100, 'pof');
     for(var key in this.players) {
         if (positions[key]) {
-            this.players[key].setPosition(positions[key]);
+            this.players[key].setPosition(positions[key], libero);
+            // if (positions[key].libero) {
+            //     console.log('setPosition', key, libero);
+            //     this.libero.setPosition(positions[key]);
+            // } else {
+            //     this.players[key].setPosition(positions[key], libero);
+            // }
         }
     }
 };

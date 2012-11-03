@@ -12,9 +12,9 @@ Player.prototype.initConfig = function(config) {
 };
 
 Player.prototype.onMoveStart = function(x, y, event) {
-    this.shape.ox = this.shape.attr("cx");
-    this.shape.oy = this.shape.attr("cy");
-    this.shape.animate({r: this.size * 1.2, opacity: 0.25}, 500, ">");
+    this.shape.ox = this.shape.attr('cx');
+    this.shape.oy = this.shape.attr('cy');
+    this.shape.animate({r: this.size * 1.2, opacity: 0.25}, 500, '>');
 };
 
 Player.prototype.onMove = function(dx, dy) {
@@ -27,13 +27,13 @@ Player.prototype.onMove = function(dx, dy) {
 };
 
 Player.prototype.onMoveEnd = function() {
-    var x = this.width / 2 - this.shape.attr("cx") + this.margin,
-        y = this.shape.attr("cy") - this.margin;
+    var x = this.width / 2 - this.shape.attr('cx') + this.margin,
+        y = this.shape.attr('cy') - this.margin;
 
     this.position.x = x;
     this.position.y = y;
-    eve("playermove", this, x, y);
-    this.shape.animate({r: this.size, opacity: 0.5}, 500, ">");
+    eve('playermove', this, x, y);
+    this.shape.animate({r: this.size, opacity: 0.5}, 500, '>');
 };
 
 Player.prototype.draw = function() {
@@ -45,17 +45,34 @@ Player.prototype.draw = function() {
     this.detail = this.paper.text(x * this.scale.width, (y + this.size + 0.1) * this.scale.width, '');
     this.shape.transform('s'+this.scale.width+','+this.scale.width+',0,0');
     this.shape.attr({
-        fill: "hsb(0, 1, 1)",
-        stroke: "none",
+        fill: this.fill,
+        stroke: 'none',
         opacity: 0.5
     });
     this.shape.drag(this.onMove, this.onMoveStart, this.onMoveEnd, this, this, this);
 };
 
-Player.prototype.setPosition = function(position) {
+Player.prototype.setPosition = function(position, libero) {
     this.position = position;
-    this.setDetail(position);
     this.move(position.x, position.y);
+
+    if (position.libero) {
+        console.log('setPosition', position, libero);
+        this.setDetail(libero);
+        this.setAppearance(libero);
+    } else {
+        this.setDetail(position);
+        this.setAppearance(position);
+    }
+    // this.setDetail(position);
+};
+
+Player.prototype.setAppearance = function(position) {
+    if (position.role === 'libero') {
+        this.shape.attr({stroke: 1, fill: 'white'});
+    } else {
+        this.shape.attr({stroke: 'none', fill: this.fill});
+    }
 };
 
 Player.prototype.setDetail = function(position) {
