@@ -24,6 +24,15 @@ function getPhaseIndexById(id) {
     return false;
 }
 
+function getRoleLabel(value) {
+    for (var i = 0, l = Roles.length; i < l; i++) {
+        if (Roles[i].value === value) {
+            return Roles[i].label;
+        }
+    }
+    return false;
+}
+
 /**********/
 
 var Roles = [{

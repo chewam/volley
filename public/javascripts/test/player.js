@@ -81,7 +81,7 @@ Player.prototype.setAppearance = function(position) {
 };
 
 Player.prototype.setDetail = function(position) {
-    var text = position.role;
+    var text = getRoleLabel(position.role);
 
     if (position.player && position.player.length) {
         text = position.player + '\n' + text;
