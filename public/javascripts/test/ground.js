@@ -1,3 +1,4 @@
+var paper;
 var Ground = function(config) {
     this.initConfig(config);
     this.draw();
@@ -15,7 +16,7 @@ Ground.prototype.draw = function() {
     this.el = document.getElementById(this.renderTo);
 
     if (!this.paper) {
-        this.paper = Raphael(this.renderTo, '100%', '100%');
+        paper = this.paper = Raphael(this.renderTo, '100%', '100%');
     }
 
     this.scale = this.el.clientWidth / (this.width + this.margin * 2);

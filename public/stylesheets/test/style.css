@@ -66,3 +66,7 @@
     background-color: #5CA1DD;
     /*border: 1px solid black;*/
 }
+
+.modal {
+    outline: 0;
+}

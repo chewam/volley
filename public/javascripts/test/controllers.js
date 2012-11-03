@@ -104,6 +104,16 @@ function PhaseDetailCtrl($scope, $routeParams, $ground, $phaseService) {
         this.phase.drawings = null;
     };
 
+    $scope.exportAsImage = function() {
+        var data,
+            el = document.getElementById('canvas'),
+            svg = document.getElementById('ground').innerHTML;
+
+        canvg('canvas', svg);
+        data = el.toDataURL('image/png');
+        $('img', $('#modal').modal('show')).attr('src', data);
+    };
+
 }
 
 PhaseDetailCtrl.$inject = ['$scope', '$routeParams', 'ground', 'phaseService'];

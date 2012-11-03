@@ -8,6 +8,23 @@ html(ng-app="test")
     body
         block content
 
+        div#modal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="modalLabel", aria-hidden="true")
+            div.modal-header
+                button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+                h3#modalLabel Diagram image
+                div Right click on this image and then on "Save as..." to save this diagram.
+            div.modal-body
+                img
+            div.modal-footer
+                //- button.btn(data-dismiss="modal", aria-hidden="true") Close
+                //- button.btn.btn-primary Save changes
+
+        canvas(id="canvas", style="display:none")
+
+        script(type="text/javascript", src="/javascripts/test/jquery.min.js")
+        script(type="text/javascript", src="/javascripts/test/bootstrap-modal.js")
+        script(type="text/javascript", src="/javascripts/test/rgbcolor.js")
+        script(type="text/javascript", src="/javascripts/test/canvg.js")
         script(type="text/javascript", src="/javascripts/test/raphael.js")
         script(type="text/javascript", src="/javascripts/test/player.js")
         script(type="text/javascript", src="/javascripts/test/team.js")
