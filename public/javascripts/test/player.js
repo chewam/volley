@@ -74,9 +74,14 @@ Player.prototype.setPosition = function(position, libero, index) {
 
 Player.prototype.setAppearance = function(position) {
     if (position.role === 'libero') {
+        this.number.attr({fill: 'black'});
         this.shape.attr({stroke: 1, fill: 'white'});
+    } else if (position.role === 'setter') {
+        this.shape.attr({fill: 'black'});
+        this.number.attr({fill: 'white'});
     } else {
         this.shape.attr({stroke: 'none', fill: this.fill});
+        this.number.attr({fill: 'black'});
     }
 };
 
