@@ -39,9 +39,7 @@ Ground.prototype.drawBackground = function() {
 
     this.background.transform('s'+this.scale+','+this.scale+',0,0');
 
-    this.background.attr({
-        fill: 'transparent'
-    });
+    this.background.attr({fill: 'transparent', stroke: 'none'});
 };
 
 Ground.prototype.drawField = function() {
@@ -51,7 +49,7 @@ Ground.prototype.drawField = function() {
         this.width,
         this.height
     );
-    this.field.attr({fill: '#FFFFFF'});
+    this.field.attr({fill: '#DD985C', stroke: '#FFFFFF', 'stroke-width': 2, 'stroke-opacity': 1});
     this.field.transform('s'+this.scale+','+this.scale+',0,0');
 
     this.paper.path(
@@ -59,7 +57,9 @@ Ground.prototype.drawField = function() {
         ' '+(this.margin / 2) +
         'L'+(this.width / 2 + this.margin) +
         ' '+(this.height + this.margin + this.margin / 2)
-    ).transform('s'+this.scale+','+this.scale+',0,0');
+    ).
+    attr({stroke: '#FFFFFF', 'stroke-width': 2, 'stroke-opacity': 1}).
+    transform('s'+this.scale+','+this.scale+',0,0');
 
     this.paper.path(
         'M'+(this.width / 2 + this.margin - 3) +
@@ -68,7 +68,7 @@ Ground.prototype.drawField = function() {
         ' '+(this.height + this.margin * 1.5)
     ).
     transform('s'+this.scale+','+this.scale+',0,0').
-    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': 'black', 'stroke-opacity': 1});
+    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': '#FFFFFF', 'stroke-opacity': 1});
 
     this.paper.path(
         'M'+(this.margin) +
@@ -77,14 +77,16 @@ Ground.prototype.drawField = function() {
         ' '+(this.height + this.margin * 1.5)
     ).
     transform('s'+this.scale+','+this.scale+',0,0').
-    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': 'black', 'stroke-opacity': 1});
+    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': '#FFFFFF', 'stroke-opacity': 1});
 
     this.paper.path(
         'M'+(this.width / 2 + this.margin - 3) +
         ' '+(this.margin) +
         'L'+(this.width / 2 + this.margin - 3) +
         ' '+(this.height + this.margin)
-    ).transform('s'+this.scale+','+this.scale+',0,0');
+    ).
+    attr({stroke: '#FFFFFF', 'stroke-width': 2, 'stroke-opacity': 1}).
+    transform('s'+this.scale+','+this.scale+',0,0');
 
     this.paper.path(
         'M'+(this.width / 2 + this.margin + 3) +
@@ -93,7 +95,7 @@ Ground.prototype.drawField = function() {
         ' '+(this.height + this.margin * 1.5)
     ).
     transform('s'+this.scale+','+this.scale+',0,0').
-    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': 'black', 'stroke-opacity': 1});
+    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': '#FFFFFF', 'stroke-opacity': 1});
 
     this.paper.path(
         'M'+(this.width / 2 + this.margin + 3) +
@@ -102,42 +104,52 @@ Ground.prototype.drawField = function() {
         ' '+(this.height + this.margin * 1.5)
     ).
     transform('s'+this.scale+','+this.scale+',0,0').
-    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': 'black', 'stroke-opacity': 1});
+    attr({'stroke-width': 0.2, 'stroke-dasharray': '.', 'stroke': '#FFFFFF', 'stroke-opacity': 1});
 
     this.paper.path(
         'M'+(this.width / 2 + this.margin + 3) +
         ' '+(this.margin) +
         'L'+(this.width / 2 + this.margin + 3) +
         ' '+(this.height + this.margin)
-    ).transform('s'+this.scale+','+this.scale+',0,0');
+    ).
+    attr({stroke: '#FFFFFF', 'stroke-width': 2, 'stroke-opacity': 1}).
+    transform('s'+this.scale+','+this.scale+',0,0');
 
     this.paper.path(
         'M'+(this.margin - 0.3) +
         ' '+(this.margin) +
         'L'+(this.margin - 0.1) +
         ' '+(this.margin)
-    ).transform('s'+this.scale+','+this.scale+',0,0');
+    ).
+    attr({stroke: '#FFFFFF', 'stroke-width': 2, 'stroke-opacity': 1}).
+    transform('s'+this.scale+','+this.scale+',0,0');
 
     this.paper.path(
         'M'+(this.margin - 0.3) +
         ' '+(this.margin + this.height) +
         'L'+(this.margin - 0.1) +
         ' '+(this.margin + this.height)
-    ).transform('s'+this.scale+','+this.scale+',0,0');
+    ).
+    attr({stroke: '#FFFFFF', 'stroke-width': 2, 'stroke-opacity': 1}).
+    transform('s'+this.scale+','+this.scale+',0,0');
 
     this.paper.path(
         'M'+(this.margin + this.width + 0.1) +
         ' '+(this.margin) +
         'L'+(this.margin + this.width + 0.3) +
         ' '+(this.margin)
-    ).transform('s'+this.scale+','+this.scale+',0,0');
+    ).
+    attr({stroke: '#FFFFFF', 'stroke-width': 2, 'stroke-opacity': 1}).
+    transform('s'+this.scale+','+this.scale+',0,0');
 
     this.paper.path(
         'M'+(this.margin + this.width + 0.1) +
         ' '+(this.margin + this.height) +
         'L'+(this.margin + this.width + 0.3) +
         ' '+(this.margin + this.height)
-    ).transform('s'+this.scale+','+this.scale+',0,0');
+    ).
+    attr({stroke: '#FFFFFF', 'stroke-width': 2, 'stroke-opacity': 1}).
+    transform('s'+this.scale+','+this.scale+',0,0');
 };
 
 Ground.prototype.drawTeam = function() {

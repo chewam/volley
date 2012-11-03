@@ -62,5 +62,7 @@
 
 #ground {
     height: 500px;
-    border: 1px solid black;
+    border: 1px solid #297cc4;
+    background-color: #5CA1DD;
+    /*border: 1px solid black;*/
 }

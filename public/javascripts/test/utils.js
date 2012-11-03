@@ -30,7 +30,7 @@ function getRoleLabel(value) {
             return Roles[i].label;
         }
     }
-    return false;
+    return '';
 }
 
 /**********/
@@ -50,6 +50,9 @@ var Roles = [{
 }, {
     value: 'defender',
     label: 'Defenseur'
+}, {
+    value: 'libero',
+    label: 'Libero'
 }];
 
 var Message = {
