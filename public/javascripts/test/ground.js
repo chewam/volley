@@ -12,23 +12,40 @@ Ground.prototype.initConfig = function(config) {
 };
 
 Ground.prototype.draw = function() {
+    this.el = document.getElementById(this.renderTo);
+
     if (!this.paper) {
         this.paper = Raphael(this.renderTo, '100%', '100%');
     }
 
+    this.scale = this.el.clientWidth / (this.width + this.margin * 2);
+
+    this.el.style.height = ((this.height + this.margin * 2) * this.scale) + 'px';
+
     this.paper.clear();
     this.drawField();
+    this.drawBackground();
     this.drawTeam();
     this.initDrawing();
 };
 
+Ground.prototype.drawBackground = function() {
+    console.log('drawBackground', this.paper, this.paper.height);
+    this.background = this.paper.rect(
+        0,
+        0,
+        this.width + this.margin * 2,
+        this.height + this.margin * 2
+    );
+
+    this.background.transform('s'+this.scale+','+this.scale+',0,0');
+
+    this.background.attr({
+        fill: 'transparent'
+    });
+};
+
 Ground.prototype.drawField = function() {
-    var el = document.getElementById(this.renderTo);
-
-    this.scale = el.clientWidth / (this.width + this.margin * 2);
-
-    el.style.height = ((this.height + this.margin * 2) * this.scale) + 'px';
-
     this.field = this.paper.rect(
         this.margin,
         this.margin,
@@ -76,43 +93,39 @@ Ground.prototype.setPhase = function(phase) {
 };
 
 Ground.prototype.initDrawing = function() {
-    var me = this, pathArray, drawingBox;
+    var me = this, pathArray, drawingBox, l, t,
+        up = function () {},
+        start = function () { pathArray = []; },
+        move = function (dx, dy) {
+            if (pathArray.length === 0) {
+                pathArray[0] = ["M", this.ox, this.oy];
+                drawingBox = me.paper.path(pathArray);
+                drawingBox.attr({stroke: "#000000","stroke-width": 3});
+            }
+            else
+                pathArray[pathArray.length] =["L", this.ox, this.oy];
 
-    this.field.mousemove(function (evt) {
-        var x, y,
-            IE = document.all ? true : false;
+            drawingBox.attr({path: pathArray});
+        },
+        mousemove = function (evt) {
+            var x, y,
+                IE = document.all ? true : false;
 
-        if (IE) {
-            x = evt.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-            y = evt.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-        } else {
-            x = evt.pageX;
-            y = evt.pageY;
-        }
+            if (IE) {
+                x = evt.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+                y = evt.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+            } else {
+                x = evt.pageX;
+                y = evt.pageY;
+            }
 
-        var el = document.getElementById(this.renderTo),
-            l = el.offsetLeft,
-            t = el.offsetTop;
+            l = me.el.offsetLeft;
+            t = me.el.offsetTop;
 
-        this.ox = x - l;
-        this.oy = y - t;
-    });
+            this.ox = x - l;
+            this.oy = y - t;
+        };
 
-    var start = function () {
-        pathArray = [];
-    },
-    move = function (dx, dy) {
-        if (pathArray.length === 0) {
-            pathArray[0] = ["M", this.ox, this.oy];
-            drawingBox = me.paper.path(pathArray);
-            drawingBox.attr({stroke: "#000000","stroke-width": 3});
-        }
-        else
-            pathArray[pathArray.length] =["L", this.ox, this.oy];
-
-        drawingBox.attr({path: pathArray});
-    },
-    up = function () {};
-
-    this.field.drag(move, start, up);
+    this.background.mousemove(mousemove);
+    this.background.drag(move, start, up);
 };
