@@ -1,0 +1,38 @@
+div#modal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="modalLabel", aria-hidden="true")
+    div.modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+        h3#modalLabel Diagram image
+        div Right click on the image below and then click on "Save image as..." to save this diagram.
+    div.modal-body
+        img
+    div.modal-footer
+
+div#permalink-modal.modal.hide.fade(tabindex="-1", role="dialog", aria-hidden="true")
+    div.modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+        h3 Phase permalink
+        div This is a permanent link to the current phase, in its current state.
+    div.modal-body
+        a
+    div.modal-footer
+
+div#dump-modal.modal.hide.fade(tabindex="-1", role="dialog", aria-hidden="true")
+    div.modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+        h3 Phases export
+        div This is a serialization of your phases. Use it to backup or modify your phases.
+    div.modal-body
+        textarea(rows="10", style="width: 515px")
+    div.modal-footer
+        a.btn.btn-primary(ng:click="saveDump()") Save
+        a.btn(data-dismiss="modal") Cancel
+
+div#remove-modal.modal.hide.fade(tabindex="-1", role="dialog", aria-hidden="true")
+    div.modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+        h3 Remove phase
+    div.modal-body
+        p Are you sure you want to remove "{{phases.selected.name}}" ?
+    div.modal-footer
+        a.btn.btn-danger(ng:click="remove()") Remove
+        a.btn(data-dismiss="modal") Cancel

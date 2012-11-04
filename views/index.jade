@@ -24,7 +24,7 @@ block content
 
             div.span9
 
-                h3.page-header {{phases.selected.name || 'No phase selected'}}
+                h3.page-header {{phases.selected.name || 'Getting started'}}
                     div.tools.pull-right(ng:show="phases.selected")
                         a.btn.btn-small(ng:click="eraseDrawings()", ng:show="phases.selected.drawings.length") Erase drawings
                         a.btn.btn-small(ng:class="getToggleDrawingClass()", ng:click="toggleDrawing()") Draw
@@ -38,6 +38,8 @@ block content
                                 li
                                     a(tabindex="-1", ng:click="showPermalink()") Position permalink
                         a.btn.btn-small.btn-danger(ng:click="confirmRemove()") Remove                        
+
+                include about
 
                 div.details.collapse
                     form.form-horizontal(ng:init="rows = [[5, 6, 1], [4, 3, 2]]")

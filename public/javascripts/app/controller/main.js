@@ -33,6 +33,17 @@ Vdt.controller.Main = function ($scope, $location, $phases, $ground) {
         $location.path('/' + id);
     };
 
+    $scope.onLiberoClick = function(index) {
+        var phase = $scope.phases.selected;
+
+        for (var key in phase.positions) {
+            if (key != index && phase.positions[key].libero) {
+                phase.positions[key].libero = false;
+            }
+        }
+        $ground.setPhase(phase);
+    };
+
     $scope.getToggleDetailsClass = function() {
         return $scope.detailsVisible ? 'active' : '';
     };

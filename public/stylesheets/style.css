@@ -1,18 +1,37 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic|Dancing+Script:700);
+
 /**** HEADER
 *******************************************************************************/
 .header {
     color: white;
-    padding: 20px;
+    padding: 5px 10px 7px;
+    background-color: #222222;
+    border-bottom: 2px solid #08C;
+    text-shadow: 0 1px 1px black;
 }
 
 h1 {
     margin: 0;
 }
 
+.header span {
+    top: 1px;
+    color: #08C;
+    font-size: 20px;
+    position: relative;
+    text-shadow: 0 1px 1px black;
+    font-family: 'Dancing Script', cursive !important;
+}
+
 /**** BODY
 *******************************************************************************/
+* {
+    font-family: 'Lato', sans-serif !important;
+}
+
 body {
-    background-color: black;
+    /*background-color: #EFEFEF;*/
+    /*font-family: 'Lato', sans-serif;*/
 }
 
 .page-header {
@@ -35,7 +54,7 @@ body {
     display: inline-block;
     margin: 0 0 0 5px;
     padding: 0;
-    height: 33px;
+    height: 34px;
 }
 
 .tools .btn-group .btn .caret {
@@ -108,14 +127,20 @@ body {
 /**** GROUND
 *******************************************************************************/
 .ground {
+    border-radius: 5px;
     background-color: #08c;
+    box-shadow: 0 1px 10px -3px black;
 }
 
 /**** FOOTER
 *******************************************************************************/
 footer {
-    color: white;
+    color: #BBB;
     padding: 20px;
+    text-shadow: 0 1px 1px white;
+    background-color: #EFEFEF;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
 }
 
 /**** MODALS
