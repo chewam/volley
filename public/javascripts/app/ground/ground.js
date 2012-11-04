@@ -1,7 +1,11 @@
-var paper;
 var Ground = function(config) {
     this.initConfig(config);
     this.draw();
+
+    window.onresize = (function() {
+        this.draw();
+        this.setPhase(this.phase);
+    }).bind(this);
 };
 
 Ground.prototype.initConfig = function(config) {
@@ -16,7 +20,7 @@ Ground.prototype.draw = function() {
     this.el = document.getElementById(this.renderTo);
 
     if (!this.paper) {
-        paper = this.paper = Raphael(this.renderTo, '100%', '100%');
+        this.paper = Raphael(this.renderTo, '100%', '100%');
     }
 
     this.scale = this.el.clientWidth / (this.width + this.margin * 2);
@@ -194,6 +198,14 @@ Ground.prototype.removeDrawings = function() {
     }
 };
 
+Ground.prototype.toggleDrawing = function(enable) {
+    if (enable === undefined) {
+        this.drawingEnabled = !this.drawingEnabled;
+    } else {
+        this.drawingEnabled = enable;
+    }
+};
+
 Ground.prototype.initDrawing = function() {
     this.drawings = [];
 
@@ -203,7 +215,8 @@ Ground.prototype.initDrawing = function() {
         },
         start = function () { pathArray = []; },
         move = function (dx, dy) {
-            if (me.phase && !me.phase.drawingEnabled) return;
+            if (!me.drawingEnabled) return;
+            // if (me.phase && !me.phase.drawingEnabled) return;
             if (pathArray.length === 0) {
                 if (!me.phase.drawings) {
                     me.phase.drawings = [];

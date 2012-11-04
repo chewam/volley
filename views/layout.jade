@@ -1,158 +1,54 @@
 doctype 5
-html
+html(ng-app="Vdt")
     head
         title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel="stylesheet", href="/stylesheets/bootstrap.min.css")
         link(rel="stylesheet", href="/stylesheets/style.css")
 
-        script
-            var __POSITIONS__ = {
-                p1r: {
-                    name: 'Passeur en 2 - reception',
-                    positions: {
-                        1: {x: 15, y: 1.5, role: "defender", players: ['Flavie']},
-                        2: {x: 9.5, y: 2.5, role: "setter", players: ['Marion']},
-                        3: {x: 15, y: 7, role: "left", players: ['Diane'], firstMove: {x: 11, y: 8}},
-                        4: {x: 12, y: 8, role: "middle", players: ['Ariane'], firstMove: {x: 11, y: 4}},
-                        5: {x: 16, y: 4.5, role: "opposite", players: ['Hoevi'], firstMove: {x: 13, y: 0}},
-                        6: {x: 15, y: 4, role: "defender", players: ['Pauline'], libero: 'Chandra'}
-                    }
-                },
-                p1a: {
-                    name: 'Passeur en 2 - attaque',
-                    positions: {
-                        1: {x: 15, y: 2.5, role: "defender", players: ['Flavie']},
-                        2: {x: 9.5, y: 2.5, role: "setter", players: ['Marion']},
-                        3: {x: 11, y: 8, role: "left", players: ['Diane']},
-                        4: {x: 11, y: 4, role: "middle", players: ['Ariane']},
-                        5: {x: 13, y: 0, role: "opposite", players: ['Hoevi']},
-                        6: {x: 15, y: 6.5, role: "defender", players: ['Pauline'], libero: 'Chandra'}
-                    }
-                },
-                p2r: {
-                    name: 'Passeur en 1 - reception',
-                    positions: {
-                        1: {x: 10.5, y: 0, role: "setter", players: ['Marion'], firstMove: {x: 9.5, y: 2.5}},
-                        2: {x: 9.5, y: 0, role: "left", players: ['Diane'], firstMove: {x: 11, y: 0}},
-                        3: {x: 12, y: 0.1, role: "middle", players: ['Ariane'], firstMove: {x: 11, y: 4}},
-                        4: {x: 15, y: 7, role: "opposite", players: ['Hoevi'], firstMove: {x: 11, y: 8}},
-                        5: {x: 15, y: 4, role: "defender", players: ['Pauline'], libero: 'Chandra'},
-                        6: {x: 15, y: 1.5, role: "defender", players: ['Flavie']}
-                    }
-                },
-                p2a: {
-                    name: 'Passeur en 1 - attaque',
-                    positions: {
-                        1: {x: 9.5, y: 2.5, role: "setter", players: ['Marion']},
-                        2: {x: 11, y: 0, role: "left", players: ['Diane']},
-                        3: {x: 11, y: 4, role: "middle", players: ['Ariane']},
-                        4: {x: 11, y: 8, role: "opposite", players: ['Hoevi']},
-                        5: {x: 15, y: 6.5, role: "defender", players: ['Pauline'], libero: 'Chandra'},
-                        6: {x: 15, y: 2.5, role: "defender", players: ['Flavie']}
-                    }
-                },
-                p3r: {
-                    name: 'Passeur en 6 - reception',
-                    positions: {
-                        1: {x: 15, y: 1.5, role: "defender", players: ['Diane']},
-                        2: {x: 12, y: 0, role: "middle", players: ['Ariane'], firstMove: {x: 11, y: 4}},
-                        3: {x: 9, y: 2, role: "opposite", players: ['Hoevi'], firstMove: {x: 11, y: 0}},
-                        4: {x: 15, y: 7, role: "left", players: ['Pauline'], firstMove: {x: 11, y: 8}},
-                        5: {x: 15, y: 4, role: "defender", players: ['Flavie'], libero: 'Chandra'},
-                        6: {x: 9.5, y: 2.5, role: "setter", players: ['Marion']}
-                    }
-                },
-                p3a: {
-                    name: 'Passeur en 6 - attaque',
-                    positions: {
-                        1: {x: 15, y: 2.5, role: "defender", players: ['Diane']},
-                        2: {x: 11, y: 4, role: "middle", players: ['Ariane']},
-                        3: {x: 11, y: 0, role: "opposite", players: ['Hoevi']},
-                        4: {x: 11, y: 8, role: "left", players: ['Pauline']},
-                        5: {x: 15, y: 6.5, role: "defender", players: ['Flavie'], libero: 'Chandra'},
-                        6: {x: 9.5, y: 2.5, role: "setter", players: ['Marion']}
-                    }
-                },
-                p4r: {
-                    name: 'Passeur en 5 - reception',
-                    positions: {
-                        1: {x: 15, y: 4, role: "defender", players: ['Ariane'], libero: 'Chandra'},
-                        2: {x: 15, y: 1.5, role: "opposite", players: ['Hoevi'], firstMove: {x: 11, y: 0}},
-                        3: {x: 12, y: 8, role: "left", players: ['Pauline']},
-                        4: {x: 10.5, y: 8.5, role: "middle", players: ['Flavie'], firstMove: {x: 11, y: 4}},
-                        5: {x: 11, y: 7.5, role: "setter", players: ['Marion'], firstMove: {x: 9.5, y: 2.5}},
-                        6: {x: 15, y: 7, role: "defender", players: ['Diane']}
-                    }
-                },
-                p4a: {
-                    name: 'Passeur en 5 - attaque',
-                    positions: {
-                        1: {x: 15, y: 2.5, role: "defender", players: ['Ariane'], libero: 'Chandra'},
-                        2: {x: 11, y: 0, role: "opposite", players: ['Hoevi']},
-                        3: {x: 11, y: 8, role: "left", players: ['Pauline']},
-                        4: {x: 11, y: 4, role: "middle", players: ['Flavie']},
-                        5: {x: 9.5, y: 2.5, role: "setter", players: ['Marion']},
-                        6: {x: 15, y: 6.5, role: "defender", players: ['Diane']}
-                    }
-                },
-                p5r: {
-                    name: 'Passeur en 4 - reception',
-                    positions: {
-                        1: {x: 15, y: 1.5, role: "opposite", players: ['Hoevi']/*, firstMove: {x: 650, y: 120}*/},
-                        2: {x: 12, y: 0, role: "left", players: ['Pauline']},
-                        3: {x: 10, y: 7, role: "middle", players: ['Flavie'], firstMove: {x: 11, y: 4}},
-                        4: {x: 9.5, y: 7.5, role: "setter", players: ['Marion'], firstMove: {x: 9.5, y: 2.5}},
-                        5: {x: 15, y: 7, role: "defender", players: ['Diane']},
-                        6: {x: 15, y: 4, role: "defender", players: ['Ariane'], libero: 'Chandra'}
-                    }
-                },
-                p5a: {
-                    name: 'Passeur en 4 - attaque',
-                    positions: {
-                        1: {x: 12, y: 0, role: "opposite", players: ['Hoevi']},
-                        2: {x: 11, y: 0, role: "left", players: ['Pauline']},
-                        3: {x: 11, y: 4, role: "middle", players: ['Flavie']},
-                        4: {x: 9.5, y: 2.5, role: "setter", players: ['Marion']},
-                        5: {x: 15, y: 6.5, role: "defender", players: ['Diane']},
-                        6: {x: 15, y: 2.5, role: "defender", players: ['Ariane'], libero: 'Chandra'}
-                    }
-                },
-                p6r: {
-                    name: 'Passeur en 3 - reception',
-                    positions: {
-                        1: {x: 15, y: 1.5, role: "defender", players: ['Pauline']},
-                        2: {x: 12, y: 0, role: "middle", players: ['Flavie'], firstMove: {x: 11, y: 4}},
-                        3: {x: 9.5, y: 2.5, role: "setter", players: ['Marion']},
-                        4: {x: 12, y: 8.5, role: "left", players: ['Diane']},
-                        5: {x: 15, y: 7, role: "defender", players: ['Ariane'], libero: 'Chandra'},
-                        6: {x: 15, y: 4, role: "opposite", players: ['Hoevi'], firstMove: {x: 12, y: 0}}
-                    }
-                },
-                p6a: {
-                    name: 'Passeur en 3 - attaque',
-                    positions: {
-                        1: {x: 15, y: 2.5, role: "defender", players: ['Pauline']},
-                        2: {x: 11, y: 4, role: "middle", players: ['Flavie']},
-                        3: {x: 9.5, y: 2.5, role: "setter", players: ['Marion']},
-                        4: {x: 11, y: 8.5, role: "left", players: ['Diane']},
-                        5: {x: 15, y: 6.5, role: "defender", players: ['Ariane'], libero: 'Chandra'},
-                        6: {x: 12, y: 0, role: "opposite", players: ['Hoevi']}
-                    }
-                }
-            };
+    body
 
-        script(src="/javascripts/jquery.min.js")
-        script(src="/javascripts/bootstrap-modal.js")
-        script(type="text/javascript", src="/javascripts/kinetic.js")
+        div.header
+            h1 Volleyball tactical diagrams
 
-        script(type="text/javascript", src="/javascripts/roles.js")
-        script(type="text/javascript", src="/javascripts/positions.js")
-        script(type="text/javascript", src="/javascripts/field.js")
-        script(type="text/javascript", src="/javascripts/player.js")
-        script(type="text/javascript", src="/javascripts/team.js")
+        block content
 
-        script(type="text/javascript", src="/javascripts/index.js")
+        footer
+            div This project was realized thanks to 
+                a(href="http://jquery.com/", target="_blank") Jquery
+                |, 
+                a(href="http://angularjs.org/", target="_blank") Angular
+                |, 
+                a(href="http://twitter.github.com/bootstrap/", target="_blank") Bootstrap
+                |&nbsp;and 
+                a(href="http://raphaeljs.com/", target="_blank") Raphael
+                |.
+            div You can download sources, fork the project or open issues on 
+                a(href="http://github.com/chewam/volley", target="_blank") Github
+                |.
+
+        //- libs
+        script(type="text/javascript", src="/javascripts/lib/jquery.min.js")
+        script(type="text/javascript", src="/javascripts/lib/bootstrap.min.js")
+        script(type="text/javascript", src="/javascripts/lib/rgbcolor.js")
+        script(type="text/javascript", src="/javascripts/lib/canvg.js")
+        script(type="text/javascript", src="/javascripts/lib/raphael.min.js")
+        script(type="text/javascript", src="/javascripts/lib/angular.min.js")
+
+        //- ground
+        script(type="text/javascript", src="/javascripts/app/ground/player.js")
+        script(type="text/javascript", src="/javascripts/app/ground/team.js")
+        script(type="text/javascript", src="/javascripts/app/ground/ground.js")
+
+        //- app
+        script(type="text/javascript", src="/javascripts/app/index.js")
+        script(type="text/javascript", src="/javascripts/app/model/roles.js")
+        script(type="text/javascript", src="/javascripts/app/model/phases.js")
+        script(type="text/javascript", src="/javascripts/app/service/phases.js")
+        script(type="text/javascript", src="/javascripts/app/service/ground.js")
+        script(type="text/javascript", src="/javascripts/app/controller/main.js")
+        script(type="text/javascript", src="/javascripts/app/controller/phase.js")
+        script(type="text/javascript", src="/javascripts/app/controller/routes.js")
+        script(type="text/javascript", src="/javascripts/app/controller/phases.js")
 
         script(type="text/javascript")
             var _gaq = _gaq || [];
@@ -164,22 +60,3 @@ html
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
-
-    body
-        div.header
-            div.container
-                h1
-                    a(href="http://volley.chewam.com/")= title
-
-        block content
-
-        div#export-modal.modal.fade.hide
-            div.modal-header
-                button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
-                h3 Positions export
-            div.modal-body
-                pre.content
-            div.modal-footer
-                //- a.btn(href="#") Close
-                //- a.btn.btn-primary(href="#") Save changes
-

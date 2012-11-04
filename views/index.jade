@@ -1,40 +1,72 @@
 extends layout
 
 block content
-    div.container
-        div#field.field
-        div.row
-            div.span3
-                h3.page-header Positions
-                select#positions(multiple="multiple", size=16)
-                button#create.btn.btn-success.btn-large Create a new position
-                br
-                button#export.btn.btn-large Export all positions
-                //- button#export.btn.btn-large(data-target="#export-modal", data-toggle="modal") Export all positions
-            div#current-position.span9(style="display:none")
-                h3.page-header Current position
-                form.form-horizontal
-                    div.control-group
-                        label.control-label Name:
-                        div.controls
-                            input#position-name(name="position-name", type="text", placeholder="position name...")
 
-                    - for (var pos, i = 0; i < 6; i++) {
-                        - pos = i + 1
+    div.container-fluid(ng:controller="Vdt.controller.Main")
+
+        div.saving(ng:show="saving") Saving...
+
+        div.row-fluid
+
+            div.list.span3(ng:controller="Vdt.controller.Phases")
+
+                h3.page-header Phases
+
+                ul.nav.nav-pills.nav-stacked
+                    li(ng:repeat="phase in phases.items", ng:class="getActiveClass(phase.id)")
+                        a(href="#/{{phase.id}}") {{phase.name}}
+
+                div.input-append
+                    input.input-block-level(ng:model="phases.newPhase", type="text", placeholder="Phase name...")
+                    button.btn(ng:click="create()", type="button") Create
+
+                button.import.btn(ng:show="phases.items.length", ng:click="showDump()") Import/Export positions
+
+            div.span9
+
+                h3.page-header {{phases.selected.name || 'No phase selected'}}
+                    div.tools.pull-right(ng:show="phases.selected")
+                        a.btn.btn-small(ng:click="eraseDrawings()", ng:show="phases.selected.drawings.length") Erase drawings
+                        a.btn.btn-small(ng:class="getToggleDrawingClass()", ng:click="toggleDrawing()") Draw
+                        a.btn.btn-small(ng:class="getToggleDetailsClass()", ng:click="toggleDetails()") Details
+                        div.btn-group(style="display: inline-block")
+                            button.btn.btn-small.btn-primary.dropdown-toggle(data-toggle="dropdown") Save as
+                                span.caret
+                            ul.dropdown-menu
+                                li
+                                    a(tabindex="-1", ng:click="showImage()") Export as image
+                                li
+                                    a(tabindex="-1", ng:click="showPermalink()") Position permalink
+                        a.btn.btn-small.btn-danger(ng:click="confirmRemove()") Remove                        
+
+                div.details.collapse
+                    form.form-horizontal(ng:init="rows = [[5, 6, 1], [4, 3, 2]]")
+
                         div.control-group
-                            label.control-label #{pos}:
+                            label.control-label Phase
                             div.controls
-                                input.input-small(id="player-at-#{pos}", name="player-at-#{pos}", type="text", placeholder="player name...")
-                                select.roles.input-medium(id="role-at-#{pos}", name="role-at-#{pos}")
-                                label.checkbox
-                                    input(type="checkbox")
-                                    | Libero
-                                input.input-small(id="libero-at-#{pos}", name="libero-at-#{pos}", type="text", placeholder="libero name...", style="display:none")
-                    - }
+                                input(type="text", ng:model="phases.selected.name", placeholder="Phase name...", style="width:255px;")
 
-                    div.form-actions
-                        a#save.btn.btn-primary Save
-                        | &nbsp;
-                        a#delete.btn.btn-danger Delete
-            //- div.span4
-            //-     h3.page-header Lorem ipsum
+                        div.row-fluid
+
+                            div(class="span{{7 - rowIndex * 2}}", ng:repeat="(rowIndex, row) in rows")
+                                div.control-group(ng:repeat="index in row")
+                                    label.control-label
+                                        | Player {{index}}
+                                        div.coords x:{{phases.selected.positions[index].x | number:1}} y:{{phases.selected.positions[index].y | number:1}}
+                                    div.controls.controls-row(ng:switch="index > 4 || index < 2")
+                                        input(class="span{{4 + rowIndex * 2}}", type="text", ng:model="phases.selected.positions[index].player", ng:d­isa­ble­d­="phases.selected.positions[index].libero", placeholder="Player name...")
+                                        select(class="span{{4 + rowIndex}}", ng:model="phases.selected.positions[index].role", ng:options="r.value as r.label for r in roles")
+                                        span(ng:switch:when="true")
+                                            input.span1(type="checkbox", ng:model="phases.selected.positions[index].libero", ng:click="onLiberoClick(index)")
+                                            input.span3(type="text", ng:model="phases.selected.libero.player", ng:show="phases.selected.positions[index].libero", placeholder="Libero name...")
+
+
+                div.ground(ng:show="phases.selected")
+                    div#ground
+
+                div(ng:view)
+
+        include modals
+
+    canvas(id="canvas", style="display:none")

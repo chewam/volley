@@ -1,64 +1,125 @@
+/**** HEADER
+*******************************************************************************/
 .header {
-    background-color: #F5F5F5;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+    color: white;
+    padding: 20px;
 }
 
-h1 a {
-    color: #ddd;
-    text-shadow: 0 2px 3px #fff;
+h1 {
+    margin: 0;
 }
 
-h1 a:hover {
-    color: #ddd;
-    text-decoration: none;
-}
-
-.field {
-    border: 1px solid #297cc4;
-    background-color: #5CA1DD;
-}
-
-button#create {
-    width: 220px;
-}
-
-button#export {
-    width: 220px;
-    margin-top: 5px;
-}
-
-/* Bootstrap override */
-
-.form-horizontal .control-group {
-    margin-bottom: 10px;
-}
-
-.form-horizontal .control-label {
-    width: 50px;
-}
-
-.form-horizontal .controls {
-    margin-left: 60px;
-}
-
-.form-horizontal .form-actions {
-    padding-left: 60px;
-}
-
-.form-horizontal .controls select {
-    margin: 0 10px;
-}
-
-.form-horizontal .controls label {
-    margin-right: 10px;
+/**** BODY
+*******************************************************************************/
+body {
+    background-color: black;
 }
 
 .page-header {
-    padding-bottom: 0;
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
-.form-horizontal label {
+.saving {
+    position: absolute;
+    right: 20px;
+    margin-top: 5px;
+    font-size: .9em;
+}
+
+.container-fluid {
+    padding-bottom: 40px;
+    background-color: white;
+}
+
+.tools .btn-group {
     display: inline-block;
+    margin: 0 0 0 5px;
+    padding: 0;
+    height: 33px;
+}
+
+.tools .btn-group .btn .caret {
+    margin-left: 5px;
+}
+
+.tools .btn {
+    margin-left: 5px;
+}
+
+/**** LIST
+*******************************************************************************/
+.list .import {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.list .nav {
+    margin-top: 18px;
+    margin-bottom: 15px;
+}
+
+.list .input-append input {
+    width: 70%;
+}
+
+.list .input-append button {
+    width: 30%;
+}
+
+/**** DETAILS
+*******************************************************************************/
+.details {
+    padding-top: 10px;
+}
+
+.details .form-horizontal {
+    margin: 0 0 10px;
+}
+
+.details .form-horizontal .control-label {
+    width: 70px;
+}
+
+.details .form-horizontal .row-fluid .control-label {
+    top: -6px;
+    position: relative;
+}
+
+.details .form-horizontal .controls {
+    margin-left: 85px;
+}
+
+.details .form-horizontal .control-group {
+    margin-bottom: 10px;
+}
+
+.details .coords {
+    right: 0;
+    top: 20px;
+    color: #AAAAAA;
+    font-size: .7em;
+    position: absolute;
+}
+
+.details .controls-row [class*="span"] + [class*="span"] {
+    margin-left: 5px;
+}
+
+/**** GROUND
+*******************************************************************************/
+.ground {
+    background-color: #08c;
+}
+
+/**** FOOTER
+*******************************************************************************/
+footer {
+    color: white;
+    padding: 20px;
+}
+
+/**** MODALS
+*******************************************************************************/
+.modal:focus {
+    outline: 0;
 }
