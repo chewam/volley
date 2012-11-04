@@ -85,6 +85,39 @@ body {
     width: 30%;
 }
 
+/**** GETTING STARTED
+*******************************************************************************/
+.getting-started .container {
+    width: 800px;
+    margin: 0;
+}
+
+.getting-started .well h4 {
+    margin: 10px 0 20px;
+}
+
+.getting-started .well {
+    text-shadow: 0 1px 1px white;
+}
+
+.getting-started .row-fluid {
+    margin-top: 10px;
+}
+
+.getting-started .well .circle {
+    color: #08C;
+    padding: 4px 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid #E3E3E3;
+}
+
+.getting-started .well .thumbnails > li {
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
 /**** DETAILS
 *******************************************************************************/
 .details {
@@ -135,12 +168,18 @@ body {
 /**** FOOTER
 *******************************************************************************/
 footer {
-    color: #BBB;
-    padding: 20px;
+    /*bottom: 0;*/
+    color: #636363;
+    /*width: 100%;*/
+    /*position: absolute;*/
     text-shadow: 0 1px 1px white;
-    background-color: #EFEFEF;
-    border-top: 1px solid #DDD;
-    border-bottom: 1px solid #DDD;
+    background-color: #F8F8F8;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+footer .footer-inner {
+    padding: 10px 20px;
 }
 
 /**** MODALS
