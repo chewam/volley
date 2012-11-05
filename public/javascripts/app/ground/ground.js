@@ -180,8 +180,10 @@ Ground.prototype.addDrawings = function() {
     if (this.phase && this.phase.drawings) {
         for (var i = 0, l = this.phase.drawings.length; i < l; i++) {
             this.drawings.push(
-                this.paper.path(this.phase.drawings[i]).
-                    attr({stroke: "#000000","stroke-width": 3})
+                this.paper.
+                    path(this.phase.drawings[i]).
+                    attr({stroke: "#000000","stroke-width": 2}).
+                    transform('s'+this.scale+','+this.scale+',0,0')
             );
         }
     } else if (this.phase) {
@@ -216,18 +218,18 @@ Ground.prototype.initDrawing = function() {
         start = function () { pathArray = []; },
         move = function (dx, dy) {
             if (!me.drawingEnabled) return;
-            // if (me.phase && !me.phase.drawingEnabled) return;
             if (pathArray.length === 0) {
                 if (!me.phase.drawings) {
                     me.phase.drawings = [];
                 }
-                pathArray[0] = ["M", this.ox, this.oy];
+                pathArray[0] = ["M", this.ox / me.scale, this.oy / me.scale];
                 p = me.paper.path(pathArray);
-                p.attr({stroke: "#000000","stroke-width": 3});
+                p.attr({stroke: "#000000","stroke-width": 2});
+                p.transform('s'+me.scale+','+me.scale+',0,0');
                 index = me.drawings.length;
                 me.drawings.push(p);
             } else {
-                pathArray[pathArray.length] = ["L", this.ox, this.oy];
+                pathArray[pathArray.length] = ["L", this.ox / me.scale, this.oy / me.scale];
             }
             p.attr({path: pathArray});
             if (me.phase) {
