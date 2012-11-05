@@ -81,7 +81,7 @@ Vdt.controller.Main = function ($scope, $location, $phases, $ground) {
             link = $location.protocol() +
             '://' + $location.host() +
             ($location.port() != 80 ? ':'+$location.port() : '') +
-            '/#/' + phase.id + '/' + JSON.stringify(phase);
+            '/#/' + phase.id + '/' + btoa(JSON.stringify(phase));
 
         // phase.name = 'Copy of ' + phase.name;
         // phase.id = btoa(phase.name + (+new Date()));

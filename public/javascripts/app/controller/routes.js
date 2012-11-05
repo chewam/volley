@@ -4,8 +4,7 @@ Vdt.controller.Routes = function ($scope, $location, $routeParams, $phases, $gro
         data = $routeParams.data;
 
     if (data) {
-        phase = JSON.parse(data);
-        console.error('DATA', data, phase);
+        phase = JSON.parse(atob(data));
         $phases.update(phase);
         $location.path('/' + phase.id);
     } else {
