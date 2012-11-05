@@ -19,13 +19,13 @@ Ground.prototype.initConfig = function(config) {
 Ground.prototype.draw = function() {
     this.el = document.getElementById(this.renderTo);
 
-    if (!this.paper) {
-        this.paper = Raphael(this.renderTo, '100%', '100%');
-    }
-
     this.scale = this.el.clientWidth / (this.width + this.margin * 2);
 
     this.el.style.height = ((this.height + this.margin * 2) * this.scale) + 'px';
+
+    if (!this.paper) {
+        this.paper = Raphael(this.renderTo, '100%', '100%');
+    }
 
     this.paper.clear();
     this.drawField();
@@ -44,7 +44,7 @@ Ground.prototype.drawBackground = function() {
 
     this.background.transform('s'+this.scale+','+this.scale+',0,0');
 
-    this.background.attr({fill: 'transparent', stroke: 'none'});
+    this.background.attr({fill: '#FFFFFF', stroke: 'none', opacity: 0});
 };
 
 Ground.prototype.drawField = function() {
