@@ -17,7 +17,7 @@ Vdt.service.Phases = function() {
                 return i;
             }
         }
-        return false;
+        return -1;
     };
 
     var sortByName = function(a, b) {
@@ -66,7 +66,7 @@ Vdt.service.Phases = function() {
             var phase = angular.copy(phases.defaults);
 
             phase.name = name;
-            phase.id = btoa(name);
+            phase.id = btoa(name + (+new Date()));
             phases.items.push(phase);
             phases.items.sort(sortByName);
 
@@ -77,6 +77,19 @@ Vdt.service.Phases = function() {
             var index = getPhaseIndexById(id);
 
             phases.items.remove(index);
+        },
+
+        update: function(phase) {
+            var index;
+
+            if (phase && phase.id) {
+                index = getPhaseIndexById(phase.id);
+                if (index !== -1) {
+                    phases.items[index] = phase;
+                } else {
+                    phases.items.push(phase);
+                }
+            }
         }
 
     };

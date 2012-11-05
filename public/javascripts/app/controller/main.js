@@ -80,12 +80,12 @@ Vdt.controller.Main = function ($scope, $location, $phases, $ground) {
         var phase = angular.copy($scope.phases.selected),
             link = $location.protocol() +
             '://' + $location.host() +
-            ($location.port() ? ':'+$location.port() : '') +
-            '/test/#/';
+            ($location.port() != 80 ? ':'+$location.port() : '') +
+            '/#/' + phase.id + '/' + JSON.stringify(phase);
 
-        phase.name = 'Copy of ' + phase.name;
-        phase.id = btoa(phase.name);
-        link += phase.id + '/' + JSON.stringify(phase);
+        // phase.name = 'Copy of ' + phase.name;
+        // phase.id = btoa(phase.name + (+new Date()));
+        // link += phase.id + '/' + JSON.stringify(phase);
 
         // link = 'http://volley.chewam.com/';
 

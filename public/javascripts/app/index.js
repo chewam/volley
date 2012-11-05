@@ -15,13 +15,16 @@ var Vdt = {
 
 Vdt.app.config(['$routeProvider', function($routeProvider) {
 
-    $routeProvider
-        .when('/:id', {
+    $routeProvider.
+        when('/:id', {
             template: ' ',
-            // templateUrl: '/templates/empty.html',
             controller: Vdt.controller.Routes
-        })
-        .otherwise({
+        }).
+        when('/:id/:data', {
+            template: ' ',
+            controller: Vdt.controller.Routes
+        }).
+        otherwise({
             redirectTo: '/'
         });
 
