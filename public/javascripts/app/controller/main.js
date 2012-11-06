@@ -95,7 +95,7 @@ Vdt.controller.Main = function ($scope, $location, $phases, $ground) {
             login: 'goldledoigt',
             longUrl: link
         }, function(response) {
-            if (response.status_text === 'OK') {
+            if (response.status_txt === 'OK') {
                 link = response.data.url;
             }
             $('.modal-body a', $('#permalink-modal').modal('show'))
