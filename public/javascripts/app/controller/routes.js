@@ -11,6 +11,9 @@ Vdt.controller.Routes = function ($scope, $location, $routeParams, $phases, $gro
         $phases.select(id);
         $ground.setPhase($phases.getSelected());
         $ground.toggleDrawing(false);
+        setTimeout(function() {
+            $ground.redraw();
+        }, 50);
     }
 
 };

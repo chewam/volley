@@ -25,6 +25,10 @@ Vdt.service.Ground = function() {
         },
         removeDrawings: function() {
             ground.removeDrawings();
+        },
+        redraw: function() {
+            ground.draw();
+            ground.setPhase(ground.phase);
         }
     };
 
