@@ -29,6 +29,7 @@ block content
                         a.btn.btn-small(ng:click="eraseDrawings()", ng:show="phases.selected.drawings.length") Erase drawings
                         a.btn.btn-small(ng:class="getToggleDrawingClass()", ng:click="toggleDrawing()") Draw
                         a.btn.btn-small(ng:class="getToggleDetailsClass()", ng:click="toggleDetails()") Details
+                        a.btn.btn-small.btn-success(ng:click="duplicate()") Duplicate
                         div.btn-group
                             button.btn.btn-small.btn-primary.dropdown-toggle(data-toggle="dropdown") Save as
                                 span.caret

@@ -42,6 +42,17 @@ Vdt.service.Phases = function() {
         }
     };
 
+    var create = function(name, data) {
+        var phase = angular.copy(data || phases.defaults);
+
+        phase.name = name;
+        phase.id = btoa(name + (+new Date()));
+        phases.items.push(phase);
+        phases.items.sort(sortByName);
+
+        return phase;
+    };
+
     return {
 
         enableAutoSave: function(callback) {
@@ -62,16 +73,7 @@ Vdt.service.Phases = function() {
             return phases.selected;
         },
 
-        create: function(name) {
-            var phase = angular.copy(phases.defaults);
-
-            phase.name = name;
-            phase.id = btoa(name + (+new Date()));
-            phases.items.push(phase);
-            phases.items.sort(sortByName);
-
-            return phase;
-        },
+        create: create,
 
         remove: function(id) {
             var index = getPhaseIndexById(id);
@@ -89,6 +91,12 @@ Vdt.service.Phases = function() {
                 } else {
                     phases.items.push(phase);
                 }
+            }
+        },
+
+        duplicateSelected: function() {
+            if (phases.selected) {
+                return create('Copy of ' + phases.selected.name, phases.selected);
             }
         }
 

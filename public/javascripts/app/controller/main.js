@@ -135,6 +135,12 @@ Vdt.controller.Main = function ($scope, $location, $phases, $ground) {
         }
     };
 
+    $scope.duplicate = function() {
+        var phase = $phases.duplicateSelected();
+
+        $location.path('/' + phase.id);
+    };
+
     $scope.saving = false;
     $scope.detailsVisible = false;
     $scope.phases = $phases.get();
