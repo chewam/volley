@@ -25,7 +25,7 @@ block content
             div.span9
 
                 h3.page-header {{phases.selected.name || 'Getting started'}}
-                    div.tools.pull-right(ng:show="phases.selected")
+                    div.tools.pull-right(ng:show="phases.selected", style="display:none")
                         a.btn.btn-small(ng:click="eraseDrawings()", ng:show="phases.selected.drawings.length") Erase drawings
                         a.btn.btn-small(ng:class="getToggleDrawingClass()", ng:click="toggleDrawing()") Draw
                         a.btn.btn-small(ng:class="getToggleDetailsClass()", ng:click="toggleDetails()") Details
