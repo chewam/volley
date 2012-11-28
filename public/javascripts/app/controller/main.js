@@ -33,6 +33,10 @@ Vdt.controller.Main = function ($scope, $location, $phases, $ground) {
         $location.path('/' + id);
     };
 
+    $scope.onPlayerChange = function() {
+        $ground.redraw();
+    };
+
     $scope.onLiberoClick = function(index) {
         var phase = $scope.phases.selected;
 
@@ -107,9 +111,23 @@ Vdt.controller.Main = function ($scope, $location, $phases, $ground) {
     $scope.showImage = function() {
         var data,
             el = document.getElementById('canvas'),
-            svg = document.getElementById('ground').innerHTML;
+            svg = document.getElementById('ground').innerHTML.replace(/>\s+/g, ">").replace(/\s+</g, "<").replace(/<canvas.+/g,"");
 
-        canvg('canvas', svg);
+        // var g = document.getElementById('ground');
+        // console.log('ground', $, g.offsetWidth, g.clientHeight);
+
+        // $(el).width(g.clientWidth);
+        // $(el).height(g.clientHeight);
+        // el.style.width = g.clientWidth + 'px';
+        // el.style.height = g.clientHeight + 'px';
+        // el.offsetWidth = g.clientWidth;
+
+        // console.log('EL', el.offsetWidth, el.clientHeight);
+
+        canvg('canvas', svg, {
+            // scaleWidth: 3
+            // scaleHeight: 33.72727272727273
+        });
         data = el.toDataURL('image/png');
         $('img', $('#modal').modal('show')).attr('src', data);
     };

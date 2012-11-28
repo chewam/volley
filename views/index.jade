@@ -4,7 +4,7 @@ block content
 
     div.container-fluid(ng:controller="Vdt.controller.Main")
 
-        div.saving(ng:show="saving") Saving...
+        div.saving(ng:show="saving", style="display:none") Saving...
 
         div.row-fluid
 
@@ -20,7 +20,7 @@ block content
                     input.input-block-level(ng:model="phases.newPhase", type="text", placeholder="Phase name...")
                     button.btn(ng:click="create()", type="button") Create
 
-                button.import.btn(ng:show="phases.items.length", ng:click="showDump()") Import/Export positions
+                button.import.btn(ng:click="showDump()") Import/Export phases
 
             div.span9
 
@@ -58,7 +58,7 @@ block content
                                         | Player {{index}}
                                         div.coords x:{{phases.selected.positions[index].x | number:1}} y:{{phases.selected.positions[index].y | number:1}}
                                     div.controls.controls-row(ng:switch="index > 4 || index < 2")
-                                        input(class="span{{4 + rowIndex * 2}}", type="text", ng:model="phases.selected.positions[index].player", ng:d­isa­ble­d­="phases.selected.positions[index].libero", placeholder="Player name...")
+                                        input(class="span{{4 + rowIndex * 2}}", type="text", ng:change="onPlayerChange()", ng:model="phases.selected.positions[index].player", ng:d­isa­ble­d­="phases.selected.positions[index].libero", placeholder="Player name...")
                                         select(class="span{{4 + rowIndex}}", ng:model="phases.selected.positions[index].role", ng:options="r.value as r.label for r in roles")
                                         span(ng:switch:when="true")
                                             input.span1(type="checkbox", ng:model="phases.selected.positions[index].libero", ng:click="onLiberoClick(index)")
@@ -72,4 +72,5 @@ block content
 
         include modals
 
-    canvas(id="canvas", style="display:none")
+    //- canvas#canvas(width="300px", height="200px")
+    canvas#canvas(style="display:none")

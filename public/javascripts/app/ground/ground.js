@@ -21,6 +21,8 @@ Ground.prototype.draw = function() {
 
     this.scale = this.el.clientWidth / (this.width + this.margin * 2);
 
+    console.warn('scale', this.scale);
+
     this.el.style.height = ((this.height + this.margin * 2) * this.scale) + 'px';
 
     if (!this.paper) {
@@ -48,6 +50,15 @@ Ground.prototype.drawBackground = function() {
 };
 
 Ground.prototype.drawField = function() {
+    this.paper.rect(
+        0,
+        0,
+        this.width + this.margin * 2,
+        this.height + this.margin * 2,
+        0.2
+    ).transform('s'+this.scale+','+this.scale+',0,0')
+        .attr({fill: '#08c', stroke: 'none'});
+
     this.field = this.paper.rect(
         this.margin,
         this.margin,
